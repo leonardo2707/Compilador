@@ -5,8 +5,8 @@
  */
 package Views;
 
-import Classes.Funcoes;
-import Eventos.clBotoesEditor;
+import Classes.FuncoesSalvarAbrir;
+import RegraDeNegocios.clBotoesEditor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
@@ -35,22 +35,23 @@ public class Editor extends javax.swing.JFrame {
         jmSalvar.addActionListener(botoes);
         jmSair.addActionListener(botoes);
         jmSobre.addActionListener(botoes);
+        jmAnalise.addActionListener(botoes);
     }
 
-    public Funcoes Novo() {
-        Funcoes funcoes = new Funcoes();
+    public FuncoesSalvarAbrir Novo() {
+        FuncoesSalvarAbrir funcoes = new FuncoesSalvarAbrir();
         jeditArea.setText("");
 
         return funcoes;
     }
 
-    public Funcoes abrir(Funcoes funcoes) {
+    public FuncoesSalvarAbrir abrir(FuncoesSalvarAbrir funcoes) {
         pegarCaminhoArquivo(funcoes);
 
         return funcoes;
     }
 
-    public Funcoes salvar(Funcoes funcoes) {
+    public FuncoesSalvarAbrir salvar(FuncoesSalvarAbrir funcoes) {
 
         if (funcoes.getCaminhoDoArquivo().equals("")) {
             PegarCaminhoESalvar(funcoes);
@@ -72,7 +73,7 @@ public class Editor extends javax.swing.JFrame {
          JOptionPane.showMessageDialog(null, texto, "Sobre Editor de Texto", JOptionPane.INFORMATION_MESSAGE);
     }
 
-    private void PegarCaminhoESalvar(Funcoes funcoes) {
+    private void PegarCaminhoESalvar(FuncoesSalvarAbrir funcoes) {
 
         JFileChooser fc = new JFileChooser();
         //Exibe o diálogo. Deve ser passado por parâmetro o JFrame de origem.
@@ -124,7 +125,7 @@ public class Editor extends javax.swing.JFrame {
 
     }
 
-    private void pegarCaminhoArquivo(Funcoes funcoes) {
+    private void pegarCaminhoArquivo(FuncoesSalvarAbrir funcoes) {
         JFileChooser fc = new JFileChooser();
         //Exibe o diálogo. Deve ser passado por parâmetro o JFrame de origem.
         fc.showOpenDialog(this);
@@ -195,6 +196,8 @@ public class Editor extends javax.swing.JFrame {
         jmAbrir = new javax.swing.JMenuItem();
         jmSalvar = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenuItem();
+        jmAnalise = new javax.swing.JMenu();
+        jMenuItem1 = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmSobre = new javax.swing.JMenuItem();
 
@@ -227,6 +230,15 @@ public class Editor extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
+        jmAnalise.setText("Executar");
+
+        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jMenuItem1.setText("Analise Léxica");
+        jmAnalise.setActionCommand("analise_lexica");
+        jmAnalise.add(jMenuItem1);
+
+        jMenuBar1.add(jmAnalise);
+
         jMenu2.setText("Sobre");
 
         jmSobre.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F1, 0));
@@ -246,7 +258,7 @@ public class Editor extends javax.swing.JFrame {
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 403, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
         );
 
         pack();
@@ -292,9 +304,11 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JEditorPane jeditArea;
     private javax.swing.JMenuItem jmAbrir;
+    private javax.swing.JMenu jmAnalise;
     private javax.swing.JMenuItem jmNovo;
     private javax.swing.JMenuItem jmSair;
     private javax.swing.JMenuItem jmSalvar;

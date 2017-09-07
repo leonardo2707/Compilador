@@ -3,9 +3,9 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package Eventos;
+package RegraDeNegocios;
 
-import Classes.Funcoes;
+import Classes.FuncoesSalvarAbrir;
 import Views.Editor;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -17,7 +17,7 @@ import java.awt.event.ActionListener;
 public class clBotoesEditor implements ActionListener{
 
     private Editor editor;
-    private Funcoes funcoes = new Funcoes();
+    private FuncoesSalvarAbrir funcoes = new FuncoesSalvarAbrir();
 
     public clBotoesEditor(Editor editor) {
         this.editor = editor;
@@ -36,6 +36,7 @@ public class clBotoesEditor implements ActionListener{
             funcoes = editor.abrir(funcoes);
         }
         
+        
         if("salvar".equals(e.getActionCommand()))
         {
             funcoes = editor.salvar(funcoes);
@@ -50,6 +51,12 @@ public class clBotoesEditor implements ActionListener{
         {
             editor.sobre();
         }
+        
+        if("analise_lexica".equals(e.getActionCommand()))
+        {
+            
+        }
+        
     }
     
 }

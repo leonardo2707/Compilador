@@ -2,7 +2,7 @@
 package Classes;
 
 
-public class Funcoes {
+public class FuncoesSalvarAbrir {
     private String CaminhoDoArquivo = "";
 
     public String getCaminhoDoArquivo() {
