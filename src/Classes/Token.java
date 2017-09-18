@@ -1,10 +1,16 @@
 package Classes;
 
-public class Tokens {
+public class Token {
     
     private int codToken;
     private String token;
 
+    public Token(int codigo, String conteudo)
+    {
+        this.codToken = codigo;
+        this.token = conteudo;
+    }
+    
     public int getCodToken() {
         return codToken;
     }
