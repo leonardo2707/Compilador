@@ -52,9 +52,9 @@ public class clBotoesEditor implements ActionListener{
             editor.sobre();
         }
         
-        if("analise_lexica".equals(e.getActionCommand()))
+        if("analise".equals(e.getActionCommand()))
         {
-            
+            Automato automato = new Automato(editor.pegarTexto());
         }
         
     }

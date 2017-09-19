@@ -36,6 +36,7 @@ public class Editor extends javax.swing.JFrame {
         jmSair.addActionListener(botoes);
         jmSobre.addActionListener(botoes);
         jmAnalise.addActionListener(botoes);
+        
     }
 
     public FuncoesSalvarAbrir Novo() {
@@ -178,6 +179,11 @@ public class Editor extends javax.swing.JFrame {
         }
         return null;
     }
+    
+    public String pegarTexto()
+    {
+        return jeditArea.getText();
+    }
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -196,8 +202,8 @@ public class Editor extends javax.swing.JFrame {
         jmAbrir = new javax.swing.JMenuItem();
         jmSalvar = new javax.swing.JMenuItem();
         jmSair = new javax.swing.JMenuItem();
-        jmAnalise = new javax.swing.JMenu();
-        jMenuItem1 = new javax.swing.JMenuItem();
+        jmenu3 = new javax.swing.JMenu();
+        jmAnalise = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmSobre = new javax.swing.JMenuItem();
 
@@ -230,14 +236,16 @@ public class Editor extends javax.swing.JFrame {
 
         jMenuBar1.add(jMenu1);
 
-        jmAnalise.setText("Executar");
+        jmenu3.setText("Executar");
 
-        jMenuItem1.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
-        jMenuItem1.setText("Analise Léxica");
-        jmAnalise.setActionCommand("analise_lexica");
-        jmAnalise.add(jMenuItem1);
+        jmAnalise.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
+        jmAnalise.setText("Analise Léxica");
+        jmAnalise.setActionCommand("analise");
+        jmenu3.add(jmAnalise);
 
-        jMenuBar1.add(jmAnalise);
+        jmenu3.setActionCommand("analise");
+
+        jMenuBar1.add(jmenu3);
 
         jMenu2.setText("Sobre");
 
@@ -304,15 +312,15 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
-    private javax.swing.JMenuItem jMenuItem1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JEditorPane jeditArea;
     private javax.swing.JMenuItem jmAbrir;
-    private javax.swing.JMenu jmAnalise;
+    private javax.swing.JMenuItem jmAnalise;
     private javax.swing.JMenuItem jmNovo;
     private javax.swing.JMenuItem jmSair;
     private javax.swing.JMenuItem jmSalvar;
     private javax.swing.JMenuItem jmSobre;
+    private javax.swing.JMenu jmenu3;
     // End of variables declaration//GEN-END:variables
 
 }
