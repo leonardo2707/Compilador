@@ -63,4 +63,19 @@ public class Dicionario {
         dicionario.add(new Token(47, "-"));
     }
     
+    
+    public Token retornaTokenDicionario(String tipo)
+    {
+       
+        for(int i = 0; i < dicionario.size(); i ++)
+        {
+            if(dicionario.get(i).getToken().equals(tipo))
+            {
+                return dicionario.get(i);
+            }
+        }
+        
+        return null;
+    }
+    
 }

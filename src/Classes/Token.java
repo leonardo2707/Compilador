@@ -4,11 +4,19 @@ public class Token {
     
     private int codToken;
     private String token;
+    private String nome;
 
-    public Token(int codigo, String conteudo)
+    public Token(int codigo, String tipo)
     {
         this.codToken = codigo;
-        this.token = conteudo;
+        this.token = tipo;
+    }
+    
+    public Token(int codigo, String tipo, String sentenca)
+    {
+        this.codToken = codigo;
+        this.token = tipo;
+        this.nome = sentenca;
     }
     
     public int getCodToken() {

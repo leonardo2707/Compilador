@@ -55,6 +55,7 @@ public class clBotoesEditor implements ActionListener{
         if("analise".equals(e.getActionCommand()))
         {
             Automato automato = new Automato(editor.pegarTexto());
+            automato.verificaSentenca();
         }
         
     }
