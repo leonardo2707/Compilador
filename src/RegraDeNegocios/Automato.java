@@ -51,6 +51,18 @@ public class Automato {
                 } else {
 
                     index = automatoVariavel(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+
+                    
+                    index = automatoIntegerFloat(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -58,7 +70,9 @@ public class Automato {
                 //Se passou por todos os if e o index não mudou
                 if(indexAnterior == index)
                 {
-                    throw new ExceptionsCompilador("Erro na linha ");
+                    verificaErro = true;
+                    JOptionPane.showMessageDialog(null, "Erro na linha: ", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                    break;
                 }
                 
                 
@@ -73,10 +87,94 @@ public class Automato {
         if(!verificaErro)
         {
              JOptionPane.showMessageDialog(null, "Analise léxica concluida - Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+            
         }
         
     }
     
+    
+    private int automatoIntegerFloat(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+        Boolean possuiVirgula = false;
+        
+        while(this.sentenca.length >= index)
+        {
+            if(primeiroIndex == index)
+            {
+                if(Character.isDigit(this.sentenca[index]))
+                {
+                     valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    return index;
+                }
+            } else {
+                /*Este if serve para caso a variavel estiver no final da senteça ele não tentar acessar o proximo index
+                * e só finzalizar o nome da variavel
+                 */
+                if (this.sentenca.length != index) {
+                    if (Character.isDigit(this.sentenca[index])) {
+                        valor += this.sentenca[index];
+                        index++;
+                    } else if (sentenca[index] == '.') {
+                        if (!possuiVirgula) {
+                            possuiVirgula = true;
+                            valor += sentenca[index];
+                            index++;
+                        } else {
+                            throw new ExceptionsCompilador("Numero com duas virgulas não é permitido posição" + index);
+                        }
+                    } else {
+                        //se possui virgula é float, senão é int
+                        if (possuiVirgula) {
+                            if (dicionario.retornaTokenDicionario("numeroFloat") != null) {
+                                Token tokenSentenca = dicionario.retornaTokenDicionario("numeroFloat");
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                return index;
+                            } else {
+                                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                            }
+
+                        } else {
+                            if (dicionario.retornaTokenDicionario("numeroInteiro") != null) {
+                                Token tokenSentenca = dicionario.retornaTokenDicionario("numeroInteiro");
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                return index;
+                            } else {
+                                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                            }
+                        }
+                    }
+                }else //no caso ele entraria aqui se estivesse no final do arquivo e não tivesse nada depois
+                {
+                    if (possuiVirgula) {
+                            if (dicionario.retornaTokenDicionario("numeroFloat") != null) {
+                                Token tokenSentenca = dicionario.retornaTokenDicionario("numeroFloat");
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                return index;
+                            } else {
+                                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                            }
+
+                        } else {
+                        
+                            if (dicionario.retornaTokenDicionario("numeroInteiro") != null) {
+                                Token tokenSentenca = dicionario.retornaTokenDicionario("numeroInteiro");
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                return index;
+                            } else {
+                                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                            }
+                        }
+                }
+            }
+        }
+        
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
     
     //automato para verificar sé uma variavel
     private int automatoVariavel(int index) throws ExceptionsCompilador
@@ -135,11 +233,10 @@ public class Automato {
         
         throw new ExceptionsCompilador("Fim da Sentença");
     }
-   
-    
-    
-    
-    
+
+    public ArrayList<Token> getTokensDaSentenca() {
+        return tokensDaSentenca;
+    }
     
     
 }
