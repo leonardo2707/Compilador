@@ -69,6 +69,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatoString(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -185,6 +191,7 @@ public class Automato {
         throw new ExceptionsCompilador("Fim da Sentença");
     }
     
+    //automato para identificar um char
     private int automatochar(int index) throws ExceptionsCompilador
     {
         int primeiroIndex = index;
@@ -215,8 +222,8 @@ public class Automato {
                         valor += this.sentenca[index];
                         index++;
 
-                        if (dicionario.retornaTokenDicionario("char") != null) {
-                            Token tokenSentenca = dicionario.retornaTokenDicionario("char");
+                        if (dicionario.retornaTokenDicionario("nomeDoChar") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("nomeDoChar");
                             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
                             return index;
                         } else {
@@ -236,6 +243,81 @@ public class Automato {
         throw new ExceptionsCompilador("Fim da Sentença");
         
     }
+    
+    //automato para verificar se é uma String
+    private int automatoString(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+        boolean fechamento = false;
+        
+        while(this.sentenca.length >= index)
+        {
+            if(primeiroIndex == index)
+            {
+                if(this.sentenca[index] == '%')
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    return index;
+                }
+            }else if(primeiroIndex+1 == index && index != this.sentenca.length)
+            {
+                if(this.sentenca[index] == '%')
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                }
+                
+            }else
+            {
+                if (!fechamento && index != this.sentenca.length) {
+                    if (this.sentenca[index] != '%') {
+                        valor += this.sentenca[index];
+                        index++;
+                    }else
+                    {
+                       valor += this.sentenca[index];
+                       index++;
+                       fechamento = true;
+                    }
+                } else {
+                    if (this.sentenca.length != index) {
+                        if (this.sentenca[index] == '%') {
+                            valor += this.sentenca[index];
+                            index++;
+
+                            if (dicionario.retornaTokenDicionario("nomeDaString") != null) {
+                                Token tokenSentenca = dicionario.retornaTokenDicionario("nomeDaString");
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                return index;
+                            } else {
+                                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                            }
+
+                        } else {
+                            throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                        }
+                    } else {
+                        throw new ExceptionsCompilador("Fim da Sentença, um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                    }
+                }
+            }
+            
+        }
+        /*else if(index == this.sentenca.length)
+            {
+                throw new ExceptionsCompilador("Fim da Sentença, um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+            }*/
+        
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
     
     //automato para verificar sé uma variavel
     private int automatoVariavel(int index) throws ExceptionsCompilador
