@@ -63,6 +63,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatochar(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -80,6 +86,7 @@ public class Automato {
             {
                 verificaErro = true;
                 JOptionPane.showMessageDialog(null, ex.getMessage(), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                break;
             }
               
         }
@@ -92,6 +99,8 @@ public class Automato {
         
     }
     
+    
+    /*Daqui para baixo fica os automatos*/
     
     private int automatoIntegerFloat(int index) throws ExceptionsCompilador
     {
@@ -176,6 +185,58 @@ public class Automato {
         throw new ExceptionsCompilador("Fim da Sentença");
     }
     
+    private int automatochar(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+        
+        while(this.sentenca.length >= index)
+        {
+            if (primeiroIndex == index) {
+                if (this.sentenca[index] == '#') {
+                    valor += sentenca[index];
+                    index++;
+                } else {
+                    return index;
+                }
+
+            } else {
+                
+                if (primeiroIndex + 1 == index && index != this.sentenca.length) {
+                    valor += sentenca[index];
+                    index++;
+                }else if(this.sentenca.length == index)
+                {
+                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha:");
+                }
+
+                if (primeiroIndex + 2 == index && index != this.sentenca.length) {
+                    if (this.sentenca[index] == '#') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("char") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("char");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+
+                    } else {
+                        throw new ExceptionsCompilador("Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #\nErro na linha: ");
+                    }
+                }else
+                {
+                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha:");
+                }
+            }
+        }
+        
+        throw new ExceptionsCompilador("Fim da Sentença");
+        
+    }
+    
     //automato para verificar sé uma variavel
     private int automatoVariavel(int index) throws ExceptionsCompilador
     {
@@ -233,6 +294,11 @@ public class Automato {
         
         throw new ExceptionsCompilador("Fim da Sentença");
     }
+    
+    
+
+    
+    /*Fim dos automatos*/
 
     public ArrayList<Token> getTokensDaSentenca() {
         return tokensDaSentenca;
