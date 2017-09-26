@@ -75,6 +75,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatoLiteral(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -318,8 +324,55 @@ public class Automato {
         throw new ExceptionsCompilador("Fim da Sentença");
     }
     
+    //automato para verificar se é um literal
+    private int automatoLiteral(int index) throws ExceptionsCompilador
+    {
+         int primeiroIndex = index;
+         String valor = "";
+         
+        while(this.sentenca.length >= index)
+        {
+            if(primeiroIndex == index)
+            {
+                if(this.sentenca[index] == '"')
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    return index;
+                }
+            }else if(this.sentenca.length != index)
+            {
+                if(this.sentenca[index] != '"')
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                    if (dicionario.retornaTokenDicionario("literal") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("literal");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                }
+            }else
+            {
+                throw new ExceptionsCompilador("Fim da Sentença, Literal não foi fechado com \" ele incia em  " + primeiroIndex);
+            }
+        
+        }
+        
+        
+          throw new ExceptionsCompilador("Fim da Sentença");
+    }
     
-    //automato para verificar sé uma variavel
+    
+    //automato para verificar se é uma variavel
     private int automatoVariavel(int index) throws ExceptionsCompilador
     {
         int primeiroIndex = index;
@@ -376,6 +429,8 @@ public class Automato {
         
         throw new ExceptionsCompilador("Fim da Sentença");
     }
+    
+    
     
     
 
