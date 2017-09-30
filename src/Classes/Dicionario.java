@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Dicionario {
     
     ArrayList<Token> dicionario = new ArrayList<Token>();
-    int[] CodigosReservados = new int[11];
+    int[] CodigosReservados = new int[16];
     
     
     public ArrayList<Token> getDicionario() {
@@ -75,13 +75,13 @@ public class Dicionario {
         CodigosReservados[6] = 14;
         CodigosReservados[7] = 16;
         CodigosReservados[8] = 17;
-        CodigosReservados[4] = 18;
-        CodigosReservados[5] = 19;
-        CodigosReservados[6] = 20;
-        CodigosReservados[7] = 21;
-        CodigosReservados[8] = 12;
-        CodigosReservados[9] = 23;
-        CodigosReservados[10] = 10;
+        CodigosReservados[9] = 18;
+        CodigosReservados[10] = 19;
+        CodigosReservados[11] = 20;
+        CodigosReservados[12] = 21;
+        CodigosReservados[13] = 12;
+        CodigosReservados[14] = 23;
+        CodigosReservados[15] = 10;
     }
     
     
