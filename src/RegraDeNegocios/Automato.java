@@ -87,12 +87,17 @@ public class Automato {
                         break;
                     }
                     
-                    index = automatosoma(index);
+                    index = automatoSoma(index);
                     if(this.sentenca.length == index)
                     {
                         break;
                     }
                     
+                    index = automatoSubtracao(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
                 }
                 
                 
@@ -505,7 +510,9 @@ public class Automato {
     
     
     /*Automatos caracteres especiais*/
-    private int automatosoma(int index) throws ExceptionsCompilador {
+    
+    //automato da soma
+    private int automatoSoma(int index) throws ExceptionsCompilador {
         int primeiroIndex = index;
         String valor = "";
 
@@ -545,6 +552,59 @@ public class Automato {
                 } else {
                     if (dicionario.retornaTokenDicionario("+") != null) {
                         Token tokenSentenca = dicionario.retornaTokenDicionario("+");
+                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                        return index;
+                    } else {
+                        throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                    }
+                }
+            }
+        }
+
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
+    //automato da subtração
+    private int automatoSubtracao(int index) throws ExceptionsCompilador {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                /*Se não começar com o $ significa que não é um nome de variavel*/
+                if (this.sentenca[index] == '-') {
+                    valor += this.sentenca[index];
+                    index++;
+                } else {
+                    return index;
+                }
+            } else {
+                if (this.sentenca.length != index) {
+                    if (this.sentenca[index] == '-') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("--") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("--");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else {
+                        if (dicionario.retornaTokenDicionario("-") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("-");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                    }
+
+                } else {
+                    if (dicionario.retornaTokenDicionario("-") != null) {
+                        Token tokenSentenca = dicionario.retornaTokenDicionario("-");
                         tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
                         return index;
                     } else {
