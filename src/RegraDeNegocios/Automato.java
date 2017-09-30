@@ -410,10 +410,10 @@ public class Automato {
                                  return index;
                                  
                              } else {
-                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
                              }
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
                          }
                      }
 
@@ -424,10 +424,10 @@ public class Automato {
                              tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
                              return index;
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
                          }
                      } else {
-                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
                      }
                  }
              }
