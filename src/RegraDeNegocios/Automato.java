@@ -98,6 +98,18 @@ public class Automato {
                     {
                         break;
                     }
+                    
+                    index = automatoDivisao(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
+                    index = automatoMultiplicacao(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
                 }
                 
                 
@@ -616,6 +628,67 @@ public class Automato {
 
         throw new ExceptionsCompilador("Fim da Sentença");
     }
+    
+    //automato da divisão
+    private int automatoDivisao(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                /*Se não começar com o $ significa que não é um nome de variavel*/
+                if (this.sentenca[index] == '/') {
+                    valor += this.sentenca[index];
+                    index++;
+                    
+                     if (dicionario.retornaTokenDicionario("/") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("/");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                    
+                } else {
+                    return index;
+                }
+            }
+        }
+        
+          throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
+    //automato da Multiplicacao
+    private int automatoMultiplicacao(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                /*Se não começar com o $ significa que não é um nome de variavel*/
+                if (this.sentenca[index] == '*') {
+                    valor += this.sentenca[index];
+                    index++;
+                    
+                     if (dicionario.retornaTokenDicionario("*") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("*");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                    
+                } else {
+                    return index;
+                }
+            }
+        }
+        
+          throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
     
 
     /*fim dos Automatos caracteres especiais*/
