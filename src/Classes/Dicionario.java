@@ -102,7 +102,7 @@ public class Dicionario {
     public boolean verificaPalavraReservada(int codToken)
     {
         
-        for(int i=0; i <= CodigosReservados.length; i++)
+        for(int i=0; i < CodigosReservados.length; i++)
         {
             if(CodigosReservados[i] == codToken)
             {

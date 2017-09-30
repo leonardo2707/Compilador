@@ -81,6 +81,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatoPalavraReservada(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -369,6 +375,66 @@ public class Automato {
         
         
           throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
+    private int automatoPalavraReservada(int index) throws ExceptionsCompilador
+    {
+         int primeiroIndex = index;
+         String valor = "";
+         
+         while(this.sentenca.length >= index)
+         {
+             if(primeiroIndex == index)
+            {
+                if (Character.isLetter(sentenca[index])) {
+                        valor += sentenca[index];
+                        index++;
+              }else
+                {
+                    return index;
+                }
+                
+            }else
+             {
+                 if (this.sentenca.length != index) {
+
+                     if (Character.isLetter(sentenca[index])) {
+                         valor += sentenca[index];
+                         index++;
+                     } else {
+                         if (dicionario.retornaTokenDicionario(valor) != null) {
+                             Token tokenSentenca = dicionario.retornaTokenDicionario(valor);
+                             if (dicionario.verificaPalavraReservada(tokenSentenca.getCodToken())) {
+                                 
+                                 tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                 return index;
+                                 
+                             } else {
+                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                             }
+                         } else {
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                         }
+                     }
+
+                 } else {
+                     if (dicionario.retornaTokenDicionario(valor) != null) {
+                         Token tokenSentenca = dicionario.retornaTokenDicionario(valor);
+                         if (dicionario.verificaPalavraReservada(tokenSentenca.getCodToken())) {
+                             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                             return index;
+                         } else {
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                         }
+                     } else {
+                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não encontrado no dicionario");
+                     }
+                 }
+             }
+              
+         }
+         
+         throw new ExceptionsCompilador("Fim da Sentença");
     }
     
     
