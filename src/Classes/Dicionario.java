@@ -6,6 +6,7 @@ import java.util.ArrayList;
 public class Dicionario {
     
     ArrayList<Token> dicionario = new ArrayList<Token>();
+    int[] CodigosReservados = new int[11];
     
     
     public ArrayList<Token> getDicionario() {
@@ -28,7 +29,7 @@ public class Dicionario {
         dicionario.add(new Token(12, "integer"));
         dicionario.add(new Token(13, "inicio"));
         dicionario.add(new Token(14, "if"));
-        dicionario.add(new Token(15, "î"));   //Esse aqui significa o que mesmo?
+        dicionario.add(new Token(15, "î"));
         dicionario.add(new Token(16, "for"));
         dicionario.add(new Token(17, "float"));
         dicionario.add(new Token(18, "fim"));
@@ -57,10 +58,30 @@ public class Dicionario {
         dicionario.add(new Token(41, "*"));
         dicionario.add(new Token(42, ")"));
         dicionario.add(new Token(43, "("));
-        dicionario.add(new Token(44, "$")); //esse é o que mesmo ?
+        dicionario.add(new Token(44, "$"));
         dicionario.add(new Token(45, "!="));
         dicionario.add(new Token(46, "--"));
         dicionario.add(new Token(47, "-"));
+        
+        
+        //palavras reservadas
+        
+        CodigosReservados[0] = 1;
+        CodigosReservados[1] = 2;
+        CodigosReservados[2] = 3;
+        CodigosReservados[3] = 4;
+        CodigosReservados[4] = 10;
+        CodigosReservados[5] = 13;
+        CodigosReservados[6] = 14;
+        CodigosReservados[7] = 16;
+        CodigosReservados[8] = 17;
+        CodigosReservados[4] = 18;
+        CodigosReservados[5] = 19;
+        CodigosReservados[6] = 20;
+        CodigosReservados[7] = 21;
+        CodigosReservados[8] = 12;
+        CodigosReservados[9] = 23;
+        CodigosReservados[10] = 10;
     }
     
     
@@ -76,6 +97,21 @@ public class Dicionario {
         }
         
         return null;
+    }
+    
+    public boolean verificaPalavraReservada(int codToken)
+    {
+        
+        for(int i=0; i <= CodigosReservados.length; i++)
+        {
+            if(CodigosReservados[i] == codToken)
+            {
+                return true;
+            }
+            
+        }
+        
+        return false;
     }
     
 }
