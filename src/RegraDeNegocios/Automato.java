@@ -116,6 +116,20 @@ public class Automato {
                     {
                         break;
                     }
+                    
+                    index = automatoDiferente(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
+                    index = automatoCaracteresEspeciais(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
+                    
                 }
                 
                 
@@ -643,7 +657,6 @@ public class Automato {
 
         while (this.sentenca.length >= index) {
             if (primeiroIndex == index) {
-                /*Se não começar com o $ significa que não é um nome de variavel*/
                 if (this.sentenca[index] == '/') {
                     valor += this.sentenca[index];
                     index++;
@@ -673,7 +686,6 @@ public class Automato {
 
         while (this.sentenca.length >= index) {
             if (primeiroIndex == index) {
-                /*Se não começar com o $ significa que não é um nome de variavel*/
                 if (this.sentenca[index] == '*') {
                     valor += this.sentenca[index];
                     index++;
@@ -749,6 +761,149 @@ public class Automato {
         throw new ExceptionsCompilador("Fim da Sentença");
     }
     
+    private int automatoDiferente(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) 
+        {
+            if(primeiroIndex == index)
+            {
+                if(this.sentenca[index] == '!')
+                {
+                    valor += "!";
+                    index++;
+                }else
+                {
+                    return index;
+                }
+            }else
+            {
+              if(this.sentenca.length != index)
+              {
+                  if(this.sentenca[index] == '=')
+                  {
+                      valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("!=") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("!=");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                  }
+              }else
+              {
+                  throw new ExceptionsCompilador("Fim da Sentença. o operador diferente é escrito assim: !=\nErro na linha: ");
+              }
+            }
+        }
+        
+        
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
+    private int automatoCaracteresEspeciais(int index) throws ExceptionsCompilador
+    {
+        if (this.sentenca[index] == '{') {
+            
+            if (dicionario.retornaTokenDicionario("{") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario("{");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "{"));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        if (this.sentenca[index] == '}') {
+            
+            if (dicionario.retornaTokenDicionario("}") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario("}");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "}"));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        if (this.sentenca[index] == '(') {
+            
+            if (dicionario.retornaTokenDicionario("(") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario("(");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "("));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        if (this.sentenca[index] == ')') {
+            
+            if (dicionario.retornaTokenDicionario(")") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario(")");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ")"));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        if (this.sentenca[index] == ';') {
+            
+            if (dicionario.retornaTokenDicionario(";") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario(";");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ";"));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        if (this.sentenca[index] == ':') {
+            
+            if (dicionario.retornaTokenDicionario(":") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario(":");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ":"));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+         if (this.sentenca[index] == ',') {
+            
+            if (dicionario.retornaTokenDicionario(",") != null) {
+                index++;
+                Token tokenSentenca = dicionario.retornaTokenDicionario(",");
+                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ","));
+                return index;
+            } else {
+                throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+            }
+        }
+        
+        
+        //se não é nenhum caractere especial ele volta de onde parou
+        return index;
+    }
 
     /*fim dos Automatos caracteres especiais*/
     
