@@ -87,6 +87,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatosoma(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -146,10 +152,10 @@ public class Automato {
                     if (Character.isDigit(this.sentenca[index])) {
                         valor += this.sentenca[index];
                         index++;
-                    } else if (sentenca[index] == '.') {
+                    } else if (this.sentenca[index] == '.') {
                         if (!possuiVirgula) {
                             possuiVirgula = true;
-                            valor += sentenca[index];
+                            valor += this.sentenca[index];
                             index++;
                         } else {
                             throw new ExceptionsCompilador("Numero com duas virgulas não é permitido posição" + index);
@@ -213,7 +219,7 @@ public class Automato {
         {
             if (primeiroIndex == index) {
                 if (this.sentenca[index] == '#') {
-                    valor += sentenca[index];
+                    valor += this.sentenca[index];
                     index++;
                 } else {
                     return index;
@@ -377,6 +383,7 @@ public class Automato {
           throw new ExceptionsCompilador("Fim da Sentença");
     }
     
+    //automato para verificar se tem uma palavra reservada
     private int automatoPalavraReservada(int index) throws ExceptionsCompilador
     {
          int primeiroIndex = index;
@@ -386,8 +393,8 @@ public class Automato {
          {
              if(primeiroIndex == index)
             {
-                if (Character.isLetter(sentenca[index])) {
-                        valor += sentenca[index];
+                if (Character.isLetter(this.sentenca[index])) {
+                        valor += this.sentenca[index];
                         index++;
               }else
                 {
@@ -398,8 +405,8 @@ public class Automato {
              {
                  if (this.sentenca.length != index) {
 
-                     if (Character.isLetter(sentenca[index])) {
-                         valor += sentenca[index];
+                     if (Character.isLetter(this.sentenca[index])) {
+                         valor += this.sentenca[index];
                          index++;
                      } else {
                          if (dicionario.retornaTokenDicionario(valor) != null) {
@@ -452,7 +459,7 @@ public class Automato {
                 /*Se não começar com o $ significa que não é um nome de variavel*/
                 if(this.sentenca[index] == '$')
                 {
-                    valor += sentenca[index];
+                    valor += this.sentenca[index];
                     index++;
                 }else
                 {
@@ -464,12 +471,12 @@ public class Automato {
                 * e só finzalizar o nome da variavel
                 */
                 if (this.sentenca.length != index) {
-                    if (Character.isLetter(sentenca[index])) {
-                        valor += sentenca[index];
+                    if (Character.isLetter(this.sentenca[index])) {
+                        valor += this.sentenca[index];
                         index++;
 
-                    } else if (Character.isDigit(sentenca[index])) {
-                        valor += sentenca[index];
+                    } else if (Character.isDigit(this.sentenca[index])) {
+                        valor += this.sentenca[index];
                         index++;
                     } else {
                         if (dicionario.retornaTokenDicionario("nomeVariavel") != null) {
@@ -497,9 +504,61 @@ public class Automato {
     }
     
     
-    
+    /*Automatos caracteres especiais*/
+    private int automatosoma(int index) throws ExceptionsCompilador {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                /*Se não começar com o $ significa que não é um nome de variavel*/
+                if (this.sentenca[index] == '+') {
+                    valor += this.sentenca[index];
+                    index++;
+                } else {
+                    return index;
+                }
+            } else {
+                if (this.sentenca.length != index) {
+                    if (this.sentenca[index] == '+') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("++") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("++");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else {
+                        if (dicionario.retornaTokenDicionario("+") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("+");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                    }
+
+                } else {
+                    if (dicionario.retornaTokenDicionario("+") != null) {
+                        Token tokenSentenca = dicionario.retornaTokenDicionario("+");
+                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                        return index;
+                    } else {
+                        throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                    }
+                }
+            }
+        }
+
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
     
 
+    /*fim dos Automatos caracteres especiais*/
     
     /*Fim dos automatos*/
 
