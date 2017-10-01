@@ -129,6 +129,17 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatoMaior(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
+                    index = automatoMenor(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
                     
                 }
                 
@@ -899,10 +910,145 @@ public class Automato {
 
             }
         }
-        
-        
         //se não é nenhum caractere especial ele volta de onde parou
         return index;
+    }
+    
+    private int automatoMaior(int index) throws ExceptionsCompilador {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                if (this.sentenca[index] == '>') {
+                    valor += this.sentenca[index];
+                    index++;
+                } else {
+                    return index;
+                }
+            } else {
+                if (this.sentenca.length != index) {
+                    if (this.sentenca[index] == '=') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario(">=") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario(">=");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else if (this.sentenca[index] == '>') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario(">>") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario(">>");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else {
+
+                        if (dicionario.retornaTokenDicionario(">") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario(">");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    }
+                } else {
+
+                    if (dicionario.retornaTokenDicionario(">") != null) {
+                        Token tokenSentenca = dicionario.retornaTokenDicionario(">");
+                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                        return index;
+                    } else {
+                        throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                    }
+                }
+
+            }
+
+        }
+
+        throw new ExceptionsCompilador("Fim da Sentença");
+    }
+    
+    
+     private int automatoMenor(int index) throws ExceptionsCompilador {
+        int primeiroIndex = index;
+        String valor = "";
+
+        while (this.sentenca.length >= index) {
+            if (primeiroIndex == index) {
+                if (this.sentenca[index] == '<') {
+                    valor += this.sentenca[index];
+                    index++;
+                } else {
+                    return index;
+                }
+            } else {
+                if (this.sentenca.length != index) {
+                    if (this.sentenca[index] == '=') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("<=") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("<=");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else if (this.sentenca[index] == '<') {
+                        valor += this.sentenca[index];
+                        index++;
+
+                        if (dicionario.retornaTokenDicionario("<<") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("<<");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    } else {
+
+                        if (dicionario.retornaTokenDicionario("<") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("<");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                        }
+                    }
+                } else {
+
+                    if (dicionario.retornaTokenDicionario("<") != null) {
+                        Token tokenSentenca = dicionario.retornaTokenDicionario("<");
+                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                        return index;
+                    } else {
+                        throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+
+                    }
+                }
+
+            }
+
+        }
+
+        throw new ExceptionsCompilador("Fim da Sentença");
     }
 
     /*fim dos Automatos caracteres especiais*/
