@@ -141,6 +141,12 @@ public class Automato {
                         break;
                     }
                     
+                    index =  automatoComentario(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -1050,9 +1056,105 @@ public class Automato {
 
         throw new ExceptionsCompilador("Fim da Sentença");
     }
-
     /*fim dos Automatos caracteres especiais*/
+     
+    /*automatos comentarios*/
     
+     private int automatoComentario(int index) throws ExceptionsCompilador
+     {
+        int primeiroIndex = index;
+        boolean comentarioLinha = false;
+        boolean fechando = false;
+
+        while (this.sentenca.length >= index) {
+            
+            if(primeiroIndex == index)
+            {
+                if(this.sentenca[index] == '@')
+                {
+                    index++;
+                    
+                }else
+                {
+                    return index;
+                }
+                
+                if(this.sentenca.length != index)
+                {
+                    if(this.sentenca[index] != '@')
+                    {
+                        comentarioLinha = true;
+                    }else
+                    {
+                        index++;
+                    }
+                }else
+                {
+                    comentarioLinha = true;
+                }
+            }else
+            {
+                //o automato vai entrar dentro desse if se for um comentario de linha
+                if(comentarioLinha)
+                {
+                      if(this.sentenca.length != index)
+                      {
+                          if(this.sentenca[index] == '\n')
+                          {
+                              index++;
+                              return index;
+                          }else
+                          {
+                              index++;
+                          }
+                          
+                      }else
+                      {
+                          return index;
+                      }
+                    
+                }else //o automato vai entrar dentro deste if se for um comentario de bloco
+                {
+                    //aqui só tem que verficar se ele fecha
+                    if(this.sentenca.length != index)
+                    {
+                        if(!fechando)
+                        {
+                            if(this.sentenca[index] == '@')
+                            {
+                                index++;
+                                fechando = true;
+                            }else
+                            {
+                                index++;
+                            }
+                        }else
+                        {
+                            if(this.sentenca[index] == '@')
+                            {
+                                index++;
+                                return index;
+                            }else //com esse if, voce pode colocar @ no comentario, só que se voce botar @@ ele vai ver que finalizou
+                            {
+                                index++;
+                                fechando = false;
+                            }
+                        }
+                    }else
+                    {
+                         throw new ExceptionsCompilador("Comentario de block não foi fechado corretamente.\nErro na linha:");
+                    }
+                }
+                
+            }
+         
+        } 
+         throw new ExceptionsCompilador("Fim da Sentença");
+     }
+     
+     
+    /*fim dos automatos de comentarios*/
+     
     /*Fim dos automatos*/
 
     public ArrayList<Token> getTokensDaSentenca() {
