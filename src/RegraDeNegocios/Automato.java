@@ -155,7 +155,7 @@ public class Automato {
                 if(indexAnterior == index)
                 {
                     verificaErro = true;
-                    JOptionPane.showMessageDialog(null, "Erro na linha: ", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Erro na linha: " + verificaLinhaErro(index), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
                 
@@ -212,7 +212,7 @@ public class Automato {
                             valor += this.sentenca[index];
                             index++;
                         } else {
-                            throw new ExceptionsCompilador("Numero com duas virgulas não é permitido posição" + index);
+                            throw new ExceptionsCompilador("Numero com duas virgulas não é permitido\nErro na linha: " + verificaLinhaErro(index));
                         }
                     } else {
                         //se possui virgula é float, senão é int
@@ -286,7 +286,7 @@ public class Automato {
                     index++;
                 }else if(this.sentenca.length == index)
                 {
-                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha:");
+                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha: " + verificaLinhaErro(index));
                 }
 
                 if (primeiroIndex + 2 == index && index != this.sentenca.length) {
@@ -303,11 +303,11 @@ public class Automato {
                         }
 
                     } else {
-                        throw new ExceptionsCompilador("Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #\nErro na linha: ");
+                        throw new ExceptionsCompilador("Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #\nErro na linha: " + verificaLinhaErro(index));
                     }
                 }else
                 {
-                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha:");
+                    throw new ExceptionsCompilador("Fim da Sentença, Um tipo char pode somente ter um Character/Digito/Simbolo Especial e depois deve ser fechado #.\nErro na linha: " + verificaLinhaErro(index));
                 }
             }
         }
@@ -343,7 +343,7 @@ public class Automato {
                     index++;
                 }else
                 {
-                    throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                    throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha: " + verificaLinhaErro(index));
                 }
                 
             }else
@@ -373,10 +373,10 @@ public class Automato {
                             }
 
                         } else {
-                            throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                            throw new ExceptionsCompilador("Um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha: " + verificaLinhaErro(index));
                         }
                     } else {
-                        throw new ExceptionsCompilador("Fim da Sentença, um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha:");
+                        throw new ExceptionsCompilador("Fim da Sentença, um tipo String precisa ser aberto por %% e fechado por %%.\nErro na linha: " + verificaLinhaErro(index));
                     }
                 }
             }
@@ -428,7 +428,7 @@ public class Automato {
                 }
             }else
             {
-                throw new ExceptionsCompilador("Fim da Sentença, Literal não foi fechado com \" ele incia em  " + primeiroIndex);
+                throw new ExceptionsCompilador("Fim da Sentença, Literal não foi fechado com \" ele incia na linha  " + verificaLinhaErro(primeiroIndex));
             }
         
         }
@@ -471,10 +471,10 @@ public class Automato {
                                  return index;
                                  
                              } else {
-                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
+                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + verificaLinhaErro(index));
                              }
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + verificaLinhaErro(index));
                          }
                      }
 
@@ -485,10 +485,10 @@ public class Automato {
                              tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
                              return index;
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
+                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + verificaLinhaErro(index));
                          }
                      } else {
-                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario");
+                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + verificaLinhaErro(index));
                      }
                  }
              }
@@ -815,7 +815,7 @@ public class Automato {
                   }
               }else
               {
-                  throw new ExceptionsCompilador("Fim da Sentença. o operador diferente é escrito assim: !=\nErro na linha: ");
+                  throw new ExceptionsCompilador("Fim da Sentença. operador diferente escrito errado, o correto é !=\nErro na linha: " + verificaLinhaErro(index));
               }
             }
         }
@@ -1142,7 +1142,7 @@ public class Automato {
                         }
                     }else
                     {
-                         throw new ExceptionsCompilador("Comentario de block não foi fechado corretamente.\nErro na linha:");
+                         throw new ExceptionsCompilador("Comentario de block não foi fechado corretamente.\nErro na linha: " + verificaLinhaErro(index));
                     }
                 }
                 
@@ -1159,6 +1159,27 @@ public class Automato {
 
     public ArrayList<Token> getTokensDaSentenca() {
         return tokensDaSentenca;
+    }
+    
+    
+    private int verificaLinhaErro(int index)
+    {
+        int linha = 0;
+        
+        for(int i=0; i < this.sentenca.length; i++)
+        {
+            if(this.sentenca[i] == '\n')
+            {
+                linha++;
+            }
+            if(index == i)
+            {
+                break;
+            }
+            
+        }
+        
+        return linha+1;
     }
     
     
