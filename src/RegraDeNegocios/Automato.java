@@ -147,6 +147,12 @@ public class Automato {
                         break;
                     }
                     
+                    index = automatoFuncao(index);
+                    if(this.sentenca.length == index)
+                    {
+                        break;
+                    }
+                    
                 }
                 
                 
@@ -563,6 +569,68 @@ public class Automato {
         
         
     }
+    
+     //automato para verificar se é uma variavel
+    private int automatoFuncao(int index) throws ExceptionsCompilador
+    {
+        int primeiroIndex = index;
+        String valor = "";
+        
+        
+        while(this.sentenca.length >= index)
+        {
+            if(primeiroIndex == index)
+            {
+                /*Se não começar com o $ significa que não é um nome de variavel*/
+                if(this.sentenca[index] == '[')
+                {
+                    valor += this.sentenca[index];
+                    index++;
+                }else
+                {
+                    return index;
+                }
+            }else
+            {
+                /*Este if serve para caso a variavel estiver no final da senteça ele não tentar acessar o proximo index
+                * e só finzalizar o nome da variavel
+                */
+                if (this.sentenca.length != index) {
+                    if (Character.isLetter(this.sentenca[index])) {
+                        valor += this.sentenca[index];
+                        index++;
+
+                    } else if (Character.isDigit(this.sentenca[index])) {
+                        valor += this.sentenca[index];
+                        index++;
+                    } else {
+                        if (dicionario.retornaTokenDicionario("callFuncao") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("callFuncao");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                        } else {
+                            throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                        }
+                    }
+                }else
+                {
+                    if (dicionario.retornaTokenDicionario("callFuncao") != null) {
+                            Token tokenSentenca = dicionario.retornaTokenDicionario("callFuncao");
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            return index;
+                     } else {
+                       throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
+                     }
+                }
+            }
+        }
+        
+        throw new ExceptionsCompilador("Fim da Sentença");
+        
+        
+    }
+    
+    
     public char[] getSentenca() {
         return sentenca;
     }
