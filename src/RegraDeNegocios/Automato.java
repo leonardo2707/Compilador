@@ -171,7 +171,11 @@ public class Automato {
         
         if(!verificaErro)
         {
-             JOptionPane.showMessageDialog(null, "Analise léxica concluida - Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+            Token tokenSentenca = dicionario.retornaTokenDicionario("$");
+            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$"));
+                
+            
+           //  JOptionPane.showMessageDialog(null, "Analise léxica concluida - Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
             
         }
         
