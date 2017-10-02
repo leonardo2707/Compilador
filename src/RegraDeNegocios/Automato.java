@@ -109,6 +109,7 @@ public class Automato {
             
         }
         
+           
     }
     
     
@@ -428,18 +429,13 @@ public class Automato {
         }
         
         throw new ExceptionsCompilador("Fim da Sentença");
+        
+        
     }
-    
-    
-    
-    
-
-    
-    /*Fim dos automatos*/
-
+    public char[] getSentenca() {
+        return sentenca;
+    }
     public ArrayList<Token> getTokensDaSentenca() {
         return tokensDaSentenca;
     }
-    
-    
 }

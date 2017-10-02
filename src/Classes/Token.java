@@ -1,6 +1,7 @@
 package Classes;
 
 public class Token {
+
     
     private int codToken;
     private String token;
@@ -33,6 +34,20 @@ public class Token {
 
     public void setToken(String token) {
         this.token = token;
+    }
+    
+        /**
+     * @return the nome
+     */
+    public String getNome() {
+        return nome;
+    }
+
+    /**
+     * @param nome the nome to set
+     */
+    public void setNome(String nome) {
+        this.nome = nome;
     }
     
     

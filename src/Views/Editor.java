@@ -6,6 +6,8 @@
 package Views;
 
 import Classes.FuncoesSalvarAbrir;
+import Classes.Token;
+import RegraDeNegocios.Automato;
 import RegraDeNegocios.clBotoesEditor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -13,8 +15,10 @@ import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -23,6 +27,12 @@ import javax.swing.JOptionPane;
 public class Editor extends javax.swing.JFrame {
 
     clBotoesEditor botoes = new clBotoesEditor(this);
+    ArrayList<Token> lista;
+    
+    public void setLista(ArrayList<Token> lista){
+        this.lista = lista;
+    }
+    
 
     /**
      * Creates new form Editor
@@ -196,6 +206,8 @@ public class Editor extends javax.swing.JFrame {
 
         jScrollPane1 = new javax.swing.JScrollPane();
         jeditArea = new javax.swing.JEditorPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        tabelaAutomato = new javax.swing.JTable();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu1 = new javax.swing.JMenu();
         jmNovo = new javax.swing.JMenuItem();
@@ -211,6 +223,29 @@ public class Editor extends javax.swing.JFrame {
         setTitle("Compilador C-Hala");
 
         jScrollPane1.setViewportView(jeditArea);
+
+        tabelaAutomato.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "Código", "Token", "Conteúdo"
+            }
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, true, true
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
+        jScrollPane2.setViewportView(tabelaAutomato);
+        if (tabelaAutomato.getColumnModel().getColumnCount() > 0) {
+            tabelaAutomato.getColumnModel().getColumn(0).setResizable(false);
+            tabelaAutomato.getColumnModel().getColumn(1).setResizable(false);
+            tabelaAutomato.getColumnModel().getColumn(2).setResizable(false);
+        }
 
         jMenu1.setText("Arquivo");
 
@@ -262,11 +297,16 @@ public class Editor extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 756, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 371, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 365, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 438, Short.MAX_VALUE)
+            .addComponent(jScrollPane2, javax.swing.GroupLayout.Alignment.TRAILING)
         );
 
         pack();
@@ -307,12 +347,25 @@ public class Editor extends javax.swing.JFrame {
             }
         });
     }
+    
+    public void adicionarLinhas(){
+        DefaultTableModel model = (DefaultTableModel) tabelaAutomato.getModel();
+        Object rowData[] = new Object[3];
+        for(int i = 0 ; i < lista.size() ; i++){
+            rowData[0] = lista.get(i).getCodToken();
+            rowData[1] = lista.get(i).getToken();
+            rowData[2] = lista.get(i).getNome();
+            model.addRow(rowData);
+        }
+        
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JEditorPane jeditArea;
     private javax.swing.JMenuItem jmAbrir;
     private javax.swing.JMenuItem jmAnalise;
@@ -321,6 +374,7 @@ public class Editor extends javax.swing.JFrame {
     private javax.swing.JMenuItem jmSalvar;
     private javax.swing.JMenuItem jmSobre;
     private javax.swing.JMenu jmenu3;
+    private javax.swing.JTable tabelaAutomato;
     // End of variables declaration//GEN-END:variables
 
 }
