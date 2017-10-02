@@ -562,11 +562,6 @@ public class Automato {
     public char[] getSentenca() {
         return sentenca;
     }
-<<<<<<< HEAD
-    public ArrayList<Token> getTokensDaSentenca() {
-        return tokensDaSentenca;
-    }
-=======
     
     
     /*Automatos caracteres especiais*/
@@ -1192,7 +1187,5 @@ public class Automato {
         
         return linha+1;
     }
-    
-    
->>>>>>> 69578a1f8c224d431c735b9edfd23dd4c77e96ca
+
 }
