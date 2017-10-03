@@ -6,6 +6,7 @@ public class Token {
     private int codToken;
     private String token;
     private String nome;
+    private int linha;
 
     public Token(int codigo, String tipo)
     {
@@ -18,6 +19,14 @@ public class Token {
         this.codToken = codigo;
         this.token = tipo;
         this.nome = sentenca;
+    }
+    
+    public Token(int codigo, String tipo, String sentenca, int linha)
+    {
+        this.codToken = codigo;
+        this.token = tipo;
+        this.nome = sentenca;
+        this.linha = linha;
     }
     
     public int getCodToken() {
