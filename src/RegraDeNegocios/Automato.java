@@ -178,7 +178,7 @@ public class Automato {
         if(!verificaErro)
         {
             Token tokenSentenca = dicionario.retornaTokenDicionario("$");
-            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$"));
+            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index)));
                 
             
            //  JOptionPane.showMessageDialog(null, "Analise léxica concluida - Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
@@ -307,7 +307,7 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario("nomeDoChar") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("nomeDoChar");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -478,7 +478,7 @@ public class Automato {
                              Token tokenSentenca = dicionario.retornaTokenDicionario(valor);
                              if (dicionario.verificaPalavraReservada(tokenSentenca.getCodToken())) {
                                  
-                                 tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                 tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                  return index;
                                  
                              } else {
@@ -493,7 +493,7 @@ public class Automato {
                      if (dicionario.retornaTokenDicionario(valor) != null) {
                          Token tokenSentenca = dicionario.retornaTokenDicionario(valor);
                          if (dicionario.verificaPalavraReservada(tokenSentenca.getCodToken())) {
-                             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                              return index;
                          } else {
                              throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + pegarNumeroLinha(index));
