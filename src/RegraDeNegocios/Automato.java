@@ -16,8 +16,10 @@ package RegraDeNegocios;
 import Classes.Dicionario;
 import Classes.Token;
 import Classes.ExceptionsCompilador;
+import java.awt.Font;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
 
 public class Automato {
     
@@ -30,7 +32,8 @@ public class Automato {
     {
         //se o arquivo foi aberto de algum computador baseado no msdos, ele transformar a quebra de linha em apenas /n
         sentenca = sentenca.replaceAll("\r\n", "\n");
-        this.sentenca = sentenca.toCharArray();   
+        this.sentenca = sentenca.toCharArray(); 
+        UIManager.put("OptionPane.messageFont", new Font("Arial", Font.PLAIN, 15));
     }
     
     public void verificaSentenca()
@@ -161,7 +164,7 @@ public class Automato {
                 if(indexAnterior == index)
                 {
                     verificaErro = true;
-                    JOptionPane.showMessageDialog(null, "Erro na linha: " + pegarNumeroLinha(index), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "Erro na linha: " + pegarNumeroLinha(index) + "\nCaracter \" " + this.sentenca[index] + " \" desconhecido inserido.", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
                     break;
                 }
                 
@@ -482,10 +485,10 @@ public class Automato {
                                  return index;
                                  
                              } else {
-                                 throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + pegarNumeroLinha(index));
+                                 throw new ExceptionsCompilador("Palavra reservada \" " + valor + " \" não foi encontrada no dicionário\nErro na linha: " + pegarNumeroLinha(index));
                              }
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + pegarNumeroLinha(index));
+                             throw new ExceptionsCompilador("Palavra reservada \" " + valor + " \" não foi encontrada no dicionário\nErro na linha: " + pegarNumeroLinha(index));
                          }
                      }
 
@@ -496,10 +499,10 @@ public class Automato {
                              tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                              return index;
                          } else {
-                             throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + pegarNumeroLinha(index));
+                             throw new ExceptionsCompilador("Palavra reservada \" " + valor + " \" não foi encontrada no dicionário\nErro na linha: " + pegarNumeroLinha(index));
                          }
                      } else {
-                         throw new ExceptionsCompilador("Palavra reservada " + valor + " não se encontrado no dicionario\nErro na linha: " + pegarNumeroLinha(index));
+                         throw new ExceptionsCompilador("Palavra reservada \" " + valor + " \" não foi encontrada no dicionário\nErro na linha: " + pegarNumeroLinha(index));
                      }
                  }
              }
