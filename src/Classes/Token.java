@@ -8,6 +8,17 @@ public class Token {
     private String nome;
     private int linha;
 
+    
+
+    public int getLinha() {
+        return linha;
+    }
+
+
+    public void setLinha(int linha) {
+        this.linha = linha;
+    }
+    
     public Token(int codigo, String tipo)
     {
         this.codToken = codigo;

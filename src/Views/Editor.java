@@ -229,11 +229,11 @@ public class Editor extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Código", "Token", "Conteúdo"
+                "Código", "Token", "Linha"
             }
         ) {
             boolean[] canEdit = new boolean [] {
-                false, true, true
+                false, true, false
             };
 
             public boolean isCellEditable(int rowIndex, int columnIndex) {
@@ -355,7 +355,7 @@ public class Editor extends javax.swing.JFrame {
         for(int i = 0 ; i < lista.size() ; i++){
             rowData[0] = lista.get(i).getCodToken();
             rowData[1] = lista.get(i).getToken();
-            rowData[2] = lista.get(i).getNome();
+            rowData[2] = lista.get(i).getLinha();
             model.addRow(rowData);
         }
         
