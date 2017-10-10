@@ -233,7 +233,7 @@ public class Automato {
                         if (possuiVirgula) {
                             if (dicionario.retornaTokenDicionario("numeroFloat") != null) {
                                 Token tokenSentenca = dicionario.retornaTokenDicionario("numeroFloat");
-                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                 return index;
                             } else {
                                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -242,7 +242,7 @@ public class Automato {
                         } else {
                             if (dicionario.retornaTokenDicionario("numeroInteiro") != null) {
                                 Token tokenSentenca = dicionario.retornaTokenDicionario("numeroInteiro");
-                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                 return index;
                             } else {
                                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -254,7 +254,7 @@ public class Automato {
                     if (possuiVirgula) {
                             if (dicionario.retornaTokenDicionario("numeroFloat") != null) {
                                 Token tokenSentenca = dicionario.retornaTokenDicionario("numeroFloat");
-                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                 return index;
                             } else {
                                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -264,7 +264,7 @@ public class Automato {
                         
                             if (dicionario.retornaTokenDicionario("numeroInteiro") != null) {
                                 Token tokenSentenca = dicionario.retornaTokenDicionario("numeroInteiro");
-                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                 return index;
                             } else {
                                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -380,7 +380,7 @@ public class Automato {
 
                             if (dicionario.retornaTokenDicionario("nomeDaString") != null) {
                                 Token tokenSentenca = dicionario.retornaTokenDicionario("nomeDaString");
-                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                                 return index;
                             } else {
                                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -434,7 +434,7 @@ public class Automato {
                     index++;
                     if (dicionario.retornaTokenDicionario("literal") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("literal");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor));
+                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1260,7 +1260,7 @@ public class Automato {
             
         }
         
-        return linha+1;
+        return linha;
     }
 
 }
