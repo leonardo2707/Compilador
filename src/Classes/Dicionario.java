@@ -62,7 +62,36 @@ public class Dicionario {
         dicionario.add(new Token(45, "!="));
         dicionario.add(new Token(46, "--"));
         dicionario.add(new Token(47, "-"));
-        
+        // Não terminais...
+        dicionario.add(new Token(48, "BLOCO"));
+        dicionario.add(new Token(49, "DCLVAR"));
+        dicionario.add(new Token(50, "DCLFUNC"));
+        dicionario.add(new Token(51, "CORPO"));
+        dicionario.add(new Token(52, "REPIDENT"));
+        dicionario.add(new Token(53, "TIPO"));
+        dicionario.add(new Token(54, "LDVAR"));
+        dicionario.add(new Token(55, "LID"));
+        dicionario.add(new Token(56, "TIPO_RETORNO"));
+        dicionario.add(new Token(57, "DEFPAR"));
+        dicionario.add(new Token(58, "VALORRETORNO"));
+        dicionario.add(new Token(59, "PARAM"));
+        dicionario.add(new Token(60, "LPARAM"));
+        dicionario.add(new Token(61, "COMANDO"));
+        dicionario.add(new Token(62, "REPCOMANDO"));
+        dicionario.add(new Token(63, "EXPRESSAO"));
+        dicionario.add(new Token(64, "PARAMETROS"));
+        dicionario.add(new Token(65, "TPARAM"));
+        dicionario.add(new Token(66, "REPPAR"));
+        dicionario.add(new Token(67, "COMPARACAO"));
+        dicionario.add(new Token(68, "ELSEPARTE"));
+        dicionario.add(new Token(69, "CONTCOMPARACAO"));
+        dicionario.add(new Token(70, "INCREMENTO"));
+        dicionario.add(new Token(71, "SEQCOUT"));
+        dicionario.add(new Token(72, "SEQUENCIA"));
+        dicionario.add(new Token(73, "TERMO"));
+        dicionario.add(new Token(74, "REPEXP"));
+        dicionario.add(new Token(75, "FATOR"));
+        dicionario.add(new Token(76, "REPTERMO"));
         
         //palavras reservadas
         
