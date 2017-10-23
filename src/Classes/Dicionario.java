@@ -129,6 +129,20 @@ public class Dicionario {
         return null;
     }
     
+        public Token retornaTokenDicionarioCodigo(int codigo)
+    {
+       
+        for(int i = 0; i < dicionario.size(); i ++)
+        {
+            if(dicionario.get(i).getCodToken() == codigo)
+            {
+                return dicionario.get(i);
+            }
+        }
+        
+        return null;
+    }
+    
     public boolean verificaPalavraReservada(int codToken)
     {
         
