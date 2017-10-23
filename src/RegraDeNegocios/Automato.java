@@ -1249,14 +1249,15 @@ public class Automato {
         
         for(int i=0; i < this.sentenca.length; i++)
         {
-            if(this.sentenca[i] == '\n')
-            {
-                linha++;
-            }
             if(index == i)
             {
                 break;
             }
+            if(this.sentenca[i] == '\n')
+            {
+                linha++;
+            }
+            
             
         }
         
