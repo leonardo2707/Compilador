@@ -13,6 +13,8 @@ import java.util.ArrayList;
  */
 public class GramaticaCodificada {
     
+    ArrayList<Regra> regras = new ArrayList<Regra>();
+    
     ArrayList<Token> regra1 = new ArrayList<Token>();
     ArrayList<Token> regra2 = new ArrayList<Token>();
     ArrayList<Token> regra3 = new ArrayList<Token>();
@@ -98,49 +100,66 @@ public class GramaticaCodificada {
     
     
     public GramaticaCodificada(){
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(35));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(51));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(50));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(49));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(36));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(10));
-        regra1.add(dicionario.retornaTokenDicionarioCodigo(2));
         
-        regra2.add(dicionario.retornaTokenDicionarioCodigo(54));
+        
+        regras.add(1, new Regra(dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(51), dicionario.retornaTokenDicionarioCodigo(50), dicionario.retornaTokenDicionarioCodigo(49),
+        dicionario.retornaTokenDicionarioCodigo(36), dicionario.retornaTokenDicionarioCodigo(10), dicionario.retornaTokenDicionarioCodigo(2)));
+        
+        regras.add(2, new Regra(dicionario.retornaTokenDicionarioCodigo(54), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(53),
+        dicionario.retornaTokenDicionarioCodigo(38), dicionario.retornaTokenDicionarioCodigo(52), dicionario.retornaTokenDicionarioCodigo(7)));
+        /*regra2.add(dicionario.retornaTokenDicionarioCodigo(54));
         regra2.add(dicionario.retornaTokenDicionarioCodigo(37));
         regra2.add(dicionario.retornaTokenDicionarioCodigo(53));
         regra2.add(dicionario.retornaTokenDicionarioCodigo(38));
         regra2.add(dicionario.retornaTokenDicionarioCodigo(52));
-        regra2.add(dicionario.retornaTokenDicionarioCodigo(7));
+        regra2.add(dicionario.retornaTokenDicionarioCodigo(7));*/
         
-        regra3.add(dicionario.retornaTokenDicionarioCodigo(15));
-                
-        regra4.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(3, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra3.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra5.add(dicionario.retornaTokenDicionarioCodigo(52));
+        regras.add(4, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra4.add(dicionario.retornaTokenDicionarioCodigo(15));
+        
+        
+        regras.add(5, new Regra(dicionario.retornaTokenDicionarioCodigo(52), dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(40)));
+        /*regra5.add(dicionario.retornaTokenDicionarioCodigo(52));
         regra5.add(dicionario.retornaTokenDicionarioCodigo(7));
-        regra5.add(dicionario.retornaTokenDicionarioCodigo(40));
+        regra5.add(dicionario.retornaTokenDicionarioCodigo(40));*/
         
-        regra6.add(dicionario.retornaTokenDicionarioCodigo(12));
+        regras.add(6, new Regra(dicionario.retornaTokenDicionarioCodigo(12)));
+        //regra6.add(dicionario.retornaTokenDicionarioCodigo(12));
         
-        regra7.add(dicionario.retornaTokenDicionarioCodigo(17));
+        regras.add(7, new Regra(dicionario.retornaTokenDicionarioCodigo(17)));
+        //regra7.add(dicionario.retornaTokenDicionarioCodigo(17));
         
-        regra8.add(dicionario.retornaTokenDicionarioCodigo(3));
+        regras.add(8, new Regra(dicionario.retornaTokenDicionarioCodigo(3)));
+        //regra8.add(dicionario.retornaTokenDicionarioCodigo(3));
         
-        regra9.add(dicionario.retornaTokenDicionarioCodigo(23));
+        regras.add(9, new Regra(dicionario.retornaTokenDicionarioCodigo(23)));
+        //regra9.add(dicionario.retornaTokenDicionarioCodigo(23));
         
-        regra10.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(10, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra10.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra11.add(dicionario.retornaTokenDicionarioCodigo(54));
+        regras.add(11, new Regra(dicionario.retornaTokenDicionarioCodigo(54), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(53),
+        dicionario.retornaTokenDicionarioCodigo(38), dicionario.retornaTokenDicionarioCodigo(55)));
+        /*regra11.add(dicionario.retornaTokenDicionarioCodigo(54));
         regra11.add(dicionario.retornaTokenDicionarioCodigo(37));
         regra11.add(dicionario.retornaTokenDicionarioCodigo(53));
         regra11.add(dicionario.retornaTokenDicionarioCodigo(38));
-        regra11.add(dicionario.retornaTokenDicionarioCodigo(55));
+        regra11.add(dicionario.retornaTokenDicionarioCodigo(55));*/
         
-        regra12.add(dicionario.retornaTokenDicionarioCodigo(52));
-        regra12.add(dicionario.retornaTokenDicionarioCodigo(7));
+        regras.add(12, new Regra(dicionario.retornaTokenDicionarioCodigo(52), dicionario.retornaTokenDicionarioCodigo(7)));
+        /*regra12.add(dicionario.retornaTokenDicionarioCodigo(52));
+        regra12.add(dicionario.retornaTokenDicionarioCodigo(7));*/
         
-        regra13.add(dicionario.retornaTokenDicionarioCodigo(50));
+        regras.add(13, new Regra(dicionario.retornaTokenDicionarioCodigo(50), dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(42),
+        dicionario.retornaTokenDicionarioCodigo(58), dicionario.retornaTokenDicionarioCodigo(43), dicionario.retornaTokenDicionarioCodigo(4), 
+        dicionario.retornaTokenDicionarioCodigo(51), dicionario.retornaTokenDicionarioCodigo(50), dicionario.retornaTokenDicionarioCodigo(49),
+        dicionario.retornaTokenDicionarioCodigo(36), dicionario.retornaTokenDicionarioCodigo(57), dicionario.retornaTokenDicionarioCodigo(7),
+        dicionario.retornaTokenDicionarioCodigo(56)));
+        
+        /*regra13.add(dicionario.retornaTokenDicionarioCodigo(50));
         regra13.add(dicionario.retornaTokenDicionarioCodigo(35));
         regra13.add(dicionario.retornaTokenDicionarioCodigo(42));
         regra13.add(dicionario.retornaTokenDicionarioCodigo(58));
@@ -152,76 +171,106 @@ public class GramaticaCodificada {
         regra13.add(dicionario.retornaTokenDicionarioCodigo(36));
         regra13.add(dicionario.retornaTokenDicionarioCodigo(57));
         regra13.add(dicionario.retornaTokenDicionarioCodigo(7));
-        regra13.add(dicionario.retornaTokenDicionarioCodigo(56));
+        regra13.add(dicionario.retornaTokenDicionarioCodigo(56));*/
         
-        regra14.add(dicionario.retornaTokenDicionarioCodigo(12));
+        regras.add(14, new Regra(dicionario.retornaTokenDicionarioCodigo(12)));
+        //regra14.add(dicionario.retornaTokenDicionarioCodigo(12));
         
-        regra15.add(dicionario.retornaTokenDicionarioCodigo(2));
+        regras.add(15, new Regra(dicionario.retornaTokenDicionarioCodigo(2)));
+        //regra15.add(dicionario.retornaTokenDicionarioCodigo(2));
         
-        regra16.add(dicionario.retornaTokenDicionarioCodigo(23));
+        regras.add(16, new Regra(dicionario.retornaTokenDicionarioCodigo(23)));
+        //regra16.add(dicionario.retornaTokenDicionarioCodigo(23));
         
-        regra17.add(dicionario.retornaTokenDicionarioCodigo(17));
+        regras.add(17, new Regra(dicionario.retornaTokenDicionarioCodigo(17)));
+        //regra17.add(dicionario.retornaTokenDicionarioCodigo(17));
         
-        regra18.add(dicionario.retornaTokenDicionarioCodigo(3));
+        regras.add(18, new Regra(dicionario.retornaTokenDicionarioCodigo(3)));
+        //regra18.add(dicionario.retornaTokenDicionarioCodigo(3));
         
-        regra19.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(19, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra19.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra20.add(dicionario.retornaTokenDicionarioCodigo(5));
+        regras.add(20, new Regra(dicionario.retornaTokenDicionarioCodigo(5)));
+        //regra20.add(dicionario.retornaTokenDicionarioCodigo(5));
         
-        regra21.add(dicionario.retornaTokenDicionarioCodigo(6));
+        regras.add(21, new Regra(dicionario.retornaTokenDicionarioCodigo(6)));
+        //regra21.add(dicionario.retornaTokenDicionarioCodigo(6));
         
-        regra22.add(dicionario.retornaTokenDicionarioCodigo(7));
+        regras.add(22, new Regra(dicionario.retornaTokenDicionarioCodigo(7)));
+        //regra22.add(dicionario.retornaTokenDicionarioCodigo(7));
         
-        regra23.add(dicionario.retornaTokenDicionarioCodigo(8));
+        regras.add(23, new Regra(dicionario.retornaTokenDicionarioCodigo(8)));
+        //regra23.add(dicionario.retornaTokenDicionarioCodigo(8));
         
-        regra24.add(dicionario.retornaTokenDicionarioCodigo(9));
+        regras.add(24, new Regra(dicionario.retornaTokenDicionarioCodigo(9)));
+        //regra24.add(dicionario.retornaTokenDicionarioCodigo(9));
         
-        regra25.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(25, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra25.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra26.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(26, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra26.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra27.add(dicionario.retornaTokenDicionarioCodigo(42));
+        regras.add(27, new Regra(dicionario.retornaTokenDicionarioCodigo(42), dicionario.retornaTokenDicionarioCodigo(59), dicionario.retornaTokenDicionarioCodigo(43)));
+     /*   regra27.add(dicionario.retornaTokenDicionarioCodigo(42));
         regra27.add(dicionario.retornaTokenDicionarioCodigo(59));
-        regra27.add(dicionario.retornaTokenDicionarioCodigo(43));
+        regra27.add(dicionario.retornaTokenDicionarioCodigo(43));*/
         
-        regra28.add(dicionario.retornaTokenDicionarioCodigo(60));
-        regra28.add(dicionario.retornaTokenDicionarioCodigo(53));
         
-        regra29.add(dicionario.retornaTokenDicionarioCodigo(60));
+        regras.add(28, new Regra(dicionario.retornaTokenDicionarioCodigo(60), dicionario.retornaTokenDicionarioCodigo(53)));
+        /*regra28.add(dicionario.retornaTokenDicionarioCodigo(60));
+        regra28.add(dicionario.retornaTokenDicionarioCodigo(53));*/
+        
+        regras.add(29, new Regra(dicionario.retornaTokenDicionarioCodigo(60), dicionario.retornaTokenDicionarioCodigo(53), dicionario.retornaTokenDicionarioCodigo(37)));
+        /*regra29.add(dicionario.retornaTokenDicionarioCodigo(60));
         regra29.add(dicionario.retornaTokenDicionarioCodigo(53));
-        regra29.add(dicionario.retornaTokenDicionarioCodigo(37));
+        regra29.add(dicionario.retornaTokenDicionarioCodigo(37));*/
         
-        regra30.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(30, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra30.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra31.add(dicionario.retornaTokenDicionarioCodigo(18));
+        regras.add(31, new Regra(dicionario.retornaTokenDicionarioCodigo(18), dicionario.retornaTokenDicionarioCodigo(62), 
+        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(13)));
+        /*regra31.add(dicionario.retornaTokenDicionarioCodigo(18));
         regra31.add(dicionario.retornaTokenDicionarioCodigo(62));
         regra31.add(dicionario.retornaTokenDicionarioCodigo(37));
         regra31.add(dicionario.retornaTokenDicionarioCodigo(61));
-        regra31.add(dicionario.retornaTokenDicionarioCodigo(13));
+        regra31.add(dicionario.retornaTokenDicionarioCodigo(13));*/
         
-        regra32.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(32, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra32.add(dicionario.retornaTokenDicionarioCodigo(15));
         
-        regra33.add(dicionario.retornaTokenDicionarioCodigo(62));
+        regras.add(33, new Regra(dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(37), 
+        dicionario.retornaTokenDicionarioCodigo(61)));
+        /*regra33.add(dicionario.retornaTokenDicionarioCodigo(62));
         regra33.add(dicionario.retornaTokenDicionarioCodigo(37));
-        regra33.add(dicionario.retornaTokenDicionarioCodigo(61));
+        regra33.add(dicionario.retornaTokenDicionarioCodigo(61));*/
         
-        regra34.add(dicionario.retornaTokenDicionarioCodigo(63));
+        regras.add(34, new Regra(dicionario.retornaTokenDicionarioCodigo(63), dicionario.retornaTokenDicionarioCodigo(29), dicionario.retornaTokenDicionarioCodigo(7)));
+        /*regra34.add(dicionario.retornaTokenDicionarioCodigo(63));
         regra34.add(dicionario.retornaTokenDicionarioCodigo(29));
-        regra34.add(dicionario.retornaTokenDicionarioCodigo(7));
+        regra34.add(dicionario.retornaTokenDicionarioCodigo(7));*/
         
-        regra35.add(dicionario.retornaTokenDicionarioCodigo(63));
+        regras.add(35, new Regra(dicionario.retornaTokenDicionarioCodigo(63), dicionario.retornaTokenDicionarioCodigo(29), dicionario.retornaTokenDicionarioCodigo(9)));
+        /*regra35.add(dicionario.retornaTokenDicionarioCodigo(63));
         regra35.add(dicionario.retornaTokenDicionarioCodigo(29));
-        regra35.add(dicionario.retornaTokenDicionarioCodigo(9));
+        regra35.add(dicionario.retornaTokenDicionarioCodigo(9));*/
         
-        regra36.add(dicionario.retornaTokenDicionarioCodigo(63));
+        regras.add(36, new Regra(dicionario.retornaTokenDicionarioCodigo(63), dicionario.retornaTokenDicionarioCodigo(29), 
+        dicionario.retornaTokenDicionarioCodigo(8)));
+        /*regra36.add(dicionario.retornaTokenDicionarioCodigo(63));
         regra36.add(dicionario.retornaTokenDicionarioCodigo(29));
-        regra36.add(dicionario.retornaTokenDicionarioCodigo(8));
+        regra36.add(dicionario.retornaTokenDicionarioCodigo(8));*/
         
-        regra37.add(dicionario.retornaTokenDicionarioCodigo(63));
+        regras.add(37, new Regra(dicionario.retornaTokenDicionarioCodigo(63), dicionario.retornaTokenDicionarioCodigo(29),
+        dicionario.retornaTokenDicionarioCodigo(63)));
+        /*regra37.add(dicionario.retornaTokenDicionarioCodigo(63));
         regra37.add(dicionario.retornaTokenDicionarioCodigo(29));
-        regra37.add(dicionario.retornaTokenDicionarioCodigo(63));
+        regra37.add(dicionario.retornaTokenDicionarioCodigo(63));*/
         
-        regra38.add(dicionario.retornaTokenDicionarioCodigo(15));
+        regras.add(38, new Regra(dicionario.retornaTokenDicionarioCodigo(15)));
+        //regra38.add(dicionario.retornaTokenDicionarioCodigo(15));
         
         regra39.add(dicionario.retornaTokenDicionarioCodigo(64));
         regra39.add(dicionario.retornaTokenDicionarioCodigo(7));
