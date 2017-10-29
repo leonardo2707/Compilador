@@ -212,13 +212,13 @@ public class GramaticaCodificada {
         regras.add(44, new Regra(dicionario.retornaTokenDicionarioCodigo(5)));
         //44 = 5
         
-         regras.add(45, new Regra(dicionario.retornaTokenDicionarioCodigo(9)));
+        regras.add(45, new Regra(dicionario.retornaTokenDicionarioCodigo(9)));
         //45 = 9
         
-         regras.add(46, new Regra(dicionario.retornaTokenDicionarioCodigo(6)));
+        regras.add(46, new Regra(dicionario.retornaTokenDicionarioCodigo(6)));
         //46 = 6
         
-         regras.add(47, new Regra(dicionario.retornaTokenDicionarioCodigo(8)));
+        regras.add(47, new Regra(dicionario.retornaTokenDicionarioCodigo(8)));
         //47 = 8
         
         regras.add(48, new Regra(dicionario.retornaTokenDicionarioCodigo(7)));
@@ -226,10 +226,10 @@ public class GramaticaCodificada {
         
         
         regras.add(49, new Regra(dicionario.retornaTokenDicionarioCodigo(12), dicionario.retornaTokenDicionarioCodigo(43),
-        dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67), dicionario.retornaTokenDicionarioCodigo(36),
+        dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67), dicionario.retornaTokenDicionarioCodigo(42), dicionario.retornaTokenDicionarioCodigo(36),
         dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62),
         dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(68)));
-        //49 = 14,43,7,67,36,61,37,62,35,68
+        //49 = 14 43 7 67 42 36 61 37 62 35 68
         
         regras.add(50, new Regra(dicionario.retornaTokenDicionarioCodigo(19),dicionario.retornaTokenDicionarioCodigo(36),
         dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62),
@@ -246,7 +246,7 @@ public class GramaticaCodificada {
         dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35)));
         //52 = 1,43,7,67,42,36,61,37,62,35
         
-         regras.add(53, new Regra(dicionario.retornaTokenDicionarioCodigo(28), dicionario.retornaTokenDicionarioCodigo(69)));
+        regras.add(53, new Regra(dicionario.retornaTokenDicionarioCodigo(28), dicionario.retornaTokenDicionarioCodigo(69)));
         //53 = 28,69
         
         regras.add(54, new Regra(dicionario.retornaTokenDicionarioCodigo(45), dicionario.retornaTokenDicionarioCodigo(69)));
@@ -255,16 +255,16 @@ public class GramaticaCodificada {
         regras.add(55, new Regra(dicionario.retornaTokenDicionarioCodigo(55), dicionario.retornaTokenDicionarioCodigo(69)));
          //55 = 27,69
          
-         regras.add(56, new Regra(dicionario.retornaTokenDicionarioCodigo(26), dicionario.retornaTokenDicionarioCodigo(69)));
-         // 56 = 26,69
+        regras.add(56, new Regra(dicionario.retornaTokenDicionarioCodigo(26), dicionario.retornaTokenDicionarioCodigo(69)));
+        //56 = 26,69
          
-         regras.add(57, new Regra(dicionario.retornaTokenDicionarioCodigo(32), dicionario.retornaTokenDicionarioCodigo(69)));
+        regras.add(57, new Regra(dicionario.retornaTokenDicionarioCodigo(32), dicionario.retornaTokenDicionarioCodigo(69)));
          //57 = 32,69
          
-         regras.add(58, new Regra(dicionario.retornaTokenDicionarioCodigo(30), dicionario.retornaTokenDicionarioCodigo(69)));
-         //58 = 30,69
+        regras.add(58, new Regra(dicionario.retornaTokenDicionarioCodigo(30), dicionario.retornaTokenDicionarioCodigo(69)));
+        //58 = 30,69
          
-         regras.add(59, new Regra(dicionario.retornaTokenDicionarioCodigo(5)));
+        regras.add(59, new Regra(dicionario.retornaTokenDicionarioCodigo(5)));
         // 59 = 5
          
         regras.add(60, new Regra(dicionario.retornaTokenDicionarioCodigo(6)));
