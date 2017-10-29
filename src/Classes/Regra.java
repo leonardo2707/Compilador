@@ -230,6 +230,11 @@ public class Regra {
         regra.add(token15);
         regra.add(token16);
     }
+
+    public ArrayList<Token> getRegra() {
+        return regra;
+    }
+    
     
     
 }

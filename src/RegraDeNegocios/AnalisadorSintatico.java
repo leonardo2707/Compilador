@@ -1,5 +1,6 @@
 package RegraDeNegocios;
 
+import Classes.GramaticaCodificada;
 import Classes.TabelaParsing;
 import Classes.Token;
 import java.util.ArrayList;
@@ -8,6 +9,7 @@ public class AnalisadorSintatico {
     
     private ArrayList<Token> tokensDaSentenca = new ArrayList<Token>();
     private TabelaParsing tabParsing = new TabelaParsing();
+    private GramaticaCodificada gramaticaCodificada = new GramaticaCodificada();
     
     //a = recebe o símbolo da entrada
     //x recebe o topo da pilha
@@ -39,10 +41,11 @@ public class AnalisadorSintatico {
             {
                 //Se M(X,a) <> null então 
                 if (tabParsing.getRegra(x.getCodToken(), a.getCodToken()) != 0) {
+                    int numeroRegra = tabParsing.getRegra(x.getCodToken(), a.getCodToken());
                 //Retire o elemento do topo da pilha 
                     pilha.remove(0);
                 // Coloque o conteúdo da regra na pilha
-                    ArrayList<Token> regra = new ArrayList<>(); //pega regra aqui na treta que o gabriel esta fazendo
+                    ArrayList<Token> regra = gramaticaCodificada.getRegras().get(numeroRegra).getRegra(); //pega regra aqui na treta que o gabriel esta fazendo
                     ArrayList<Token> aux = pilha;
 
                     //a regra deve ficar em cima da pinha
