@@ -71,7 +71,7 @@
                 <Property name="text" type="java.lang.String" value="Analise L&#xe9;xica"/>
               </Properties>
               <AuxValues>
-                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jmAnalise.setActionCommand(&quot;analise&quot;);"/>
+                <AuxValue name="JavaCodeGenerator_InitCodePost" type="java.lang.String" value="jmAnalise.setActionCommand(&quot;analise_lexico&quot;);"/>
               </AuxValues>
             </MenuItem>
           </SubComponents>

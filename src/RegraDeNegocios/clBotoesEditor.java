@@ -52,13 +52,26 @@ public class clBotoesEditor implements ActionListener{
             editor.sobre();
         }
         
-        if("analise".equals(e.getActionCommand()))
+        if("analise_lexico".equals(e.getActionCommand()))
         {
             Automato automato = new Automato(editor.pegarTexto());
             automato.verificaSentenca();
             editor.setLista(automato.getTokensDaSentenca());
             editor.adicionarLinhas();
         }
+        
+        if("compilar".equals(e.getActionCommand()))
+        {
+            
+            Automato automato = new Automato(editor.pegarTexto());
+            automato.analisarSintatico = true;
+            automato.verificaSentenca();
+            
+            
+            editor.setLista(automato.getTokensDaSentenca());
+            editor.adicionarLinhas();
+        }
+        
         
     }
     

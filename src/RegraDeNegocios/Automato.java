@@ -26,6 +26,7 @@ public class Automato {
     private char[] sentenca;
     private ArrayList<Token> tokensDaSentenca = new ArrayList<Token>();
     private Dicionario dicionario = new Dicionario();
+    public boolean analisarSintatico = false;
     
     //esse construtor separa a sentença em um vetor
     public Automato(String sentenca)
@@ -182,9 +183,22 @@ public class Automato {
         {
             Token tokenSentenca = dicionario.retornaTokenDicionario("$");
             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index)));
-                
             
-           //  JOptionPane.showMessageDialog(null, "Analise léxica concluida - Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+            if(analisarSintatico)
+            {
+                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                try{
+                     analisadorSintatico.analisarTreta(tokenSentenca, tokenSentenca, tokensDaSentenca);
+                }catch(ExceptionsCompilador ex)
+                {   
+                    verificaErro = true;
+                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                  
+                }
+               
+            }
+            
+           //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
             
         }
         

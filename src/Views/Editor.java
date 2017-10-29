@@ -275,7 +275,7 @@ public class Editor extends javax.swing.JFrame {
 
         jmAnalise.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F5, 0));
         jmAnalise.setText("Analise Léxica");
-        jmAnalise.setActionCommand("analise");
+        jmAnalise.setActionCommand("analise_lexico");
         jmenu3.add(jmAnalise);
 
         jmenu3.setActionCommand("analise");

@@ -1,5 +1,6 @@
 package RegraDeNegocios;
 
+import Classes.ExceptionsCompilador;
 import Classes.GramaticaCodificada;
 import Classes.TabelaParsing;
 import Classes.Token;
@@ -13,7 +14,7 @@ public class AnalisadorSintatico {
     
     //a = recebe o símbolo da entrada
     //x recebe o topo da pilha
-    public void analisarTreta(Token x, Token a, ArrayList<Token> pilha)
+    public void analisarTreta(Token x, Token a, ArrayList<Token> pilha) throws ExceptionsCompilador
     {
         do {
             if (x == null) {
@@ -33,6 +34,8 @@ public class AnalisadorSintatico {
                     return;
 
                 } else {
+                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
+                            + x.getNome());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }    
             } 
@@ -57,7 +60,9 @@ public class AnalisadorSintatico {
                 //X recebe o topo da pilha
                 x = pilha.get(0);
                 } else {
-                //AQUI TA UM ERRO SINTATICO EM ALGUMA LINHA
+                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
+                          + x.getNome());
+                    //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
         } while (x.getCodToken() == 44);
