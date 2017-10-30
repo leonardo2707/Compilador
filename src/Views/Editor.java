@@ -46,6 +46,7 @@ public class Editor extends javax.swing.JFrame {
         jmSair.addActionListener(botoes);
         jmSobre.addActionListener(botoes);
         jmAnalise.addActionListener(botoes);
+        jCompilar.addActionListener(botoes);
         
     }
 
@@ -216,6 +217,7 @@ public class Editor extends javax.swing.JFrame {
         jmSair = new javax.swing.JMenuItem();
         jmenu3 = new javax.swing.JMenu();
         jmAnalise = new javax.swing.JMenuItem();
+        jCompilar = new javax.swing.JMenuItem();
         jMenu2 = new javax.swing.JMenu();
         jmSobre = new javax.swing.JMenuItem();
 
@@ -277,6 +279,11 @@ public class Editor extends javax.swing.JFrame {
         jmAnalise.setText("Analise Léxica");
         jmAnalise.setActionCommand("analise_lexico");
         jmenu3.add(jmAnalise);
+
+        jCompilar.setAccelerator(javax.swing.KeyStroke.getKeyStroke(java.awt.event.KeyEvent.VK_F6, 0));
+        jCompilar.setText("Compilar");
+        jCompilar.setActionCommand("compilar");
+        jmenu3.add(jCompilar);
 
         jmenu3.setActionCommand("analise");
 
@@ -362,6 +369,7 @@ public class Editor extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JMenuItem jCompilar;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenuBar jMenuBar1;
