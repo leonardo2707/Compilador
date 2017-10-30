@@ -53,7 +53,8 @@ public class Automato {
                 if (this.sentenca[index] == ' ' || this.sentenca[index] == '\n') {
                     index++;
                 } else {
-
+                    
+                    
                     index = automatoVariavel(index);
                     if(this.sentenca.length == index)
                     {

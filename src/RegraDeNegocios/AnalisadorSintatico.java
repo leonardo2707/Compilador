@@ -37,8 +37,8 @@ public class AnalisadorSintatico {
                     throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
                             + x.getNome());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
-                }    
-            } 
+                }
+            }
              //Se M(X,a) <> null então  
             else 
             {
@@ -55,6 +55,7 @@ public class AnalisadorSintatico {
                     for (int i = 0; i <= aux.size(); i++) {
                         regra.add(aux.get(i));
                     }
+                    
                     pilha = regra;
                 //aqui ele termina de colocar o conteudo da regra na pilha
                 //X recebe o topo da pilha
@@ -67,8 +68,6 @@ public class AnalisadorSintatico {
             }
         } while (x.getCodToken() == 44);
     }
-    
-    
 }
 
 
