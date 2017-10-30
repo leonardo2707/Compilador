@@ -14,7 +14,7 @@ public class AnalisadorSintatico {
     
     //a = recebe o símbolo da entrada
     //x recebe o topo da pilha
-    public void analisarTreta(Token x, Token a, ArrayList<Token> pilha) throws ExceptionsCompilador
+    public ArrayList<Token> analisarTreta(Token x, Token a, ArrayList<Token> pilha) throws ExceptionsCompilador
     {
         do {
             if (x == null) {
@@ -31,7 +31,7 @@ public class AnalisadorSintatico {
                     // Retire o elemento do topo da pilha
                     pilha.remove(0);
                     //Volta para o Léxico
-                    return;
+                    return pilha;
 
                 } else {
                     throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
@@ -67,6 +67,7 @@ public class AnalisadorSintatico {
                 }
             }
         } while (x.getCodToken() == 44);
+        return pilha;
     }
 }
 
