@@ -11,7 +11,7 @@ package Classes;
  */
 public class TabelaParsing {
     
-    int tabParsing[][] = new int[76][47];
+    int tabParsing[][] = new int[77][48];
 
 public TabelaParsing(){
     

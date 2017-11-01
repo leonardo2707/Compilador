@@ -43,6 +43,12 @@ public class Automato {
         int index = 0;
         int indexAnterior;
         
+         if(analisarSintatico)
+          {
+              Token tokenSalvar = dicionario.retornaTokenDicionarioCodigo(48);
+              tokensDaSentenca.add(tokenSalvar);
+          }
+        
         //A ultima posição é o simbolo do fim, então o index tem que ser menor que o fim
         while(this.sentenca.length > index)
         {
@@ -152,11 +158,11 @@ public class Automato {
                         break;
                     }
                     
-                    index = automatoFuncao(index);
+                  /*  index = automatoFuncao(index);
                     if(this.sentenca.length == index)
                     {
                         break;
-                    }
+                    }*/
                     
                 }
                 
@@ -185,20 +191,7 @@ public class Automato {
             Token tokenSentenca = dicionario.retornaTokenDicionario("$");
             tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index)));
             
-            if(analisarSintatico)
-            {
-                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                try{
-                     analisadorSintatico.analisarTreta(tokenSentenca, tokenSentenca, tokensDaSentenca);
-                }catch(ExceptionsCompilador ex)
-                {   
-                    verificaErro = true;
-                    JOptionPane.showMessageDialog(null, ex.getMessage(), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
-                  
-                }
-               
-            }
-            
+           
            //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
             
         }
@@ -251,7 +244,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -267,7 +260,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -286,7 +279,7 @@ public class Automato {
                             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                             if (analisarSintatico) {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                             } else {
                                 tokensDaSentenca.add(tokenSalvar);
@@ -303,7 +296,7 @@ public class Automato {
                             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                             if (analisarSintatico) {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                             } else {
                                 tokensDaSentenca.add(tokenSalvar);
@@ -357,7 +350,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -436,7 +429,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -498,7 +491,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -554,7 +547,7 @@ public class Automato {
                                  Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                  if (analisarSintatico) {
                                      AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                     this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                     this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
 
                                  }else
                                 {
@@ -578,7 +571,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -636,12 +629,12 @@ public class Automato {
                         index++;
                     } else {
                         if (dicionario.retornaTokenDicionario("nomeVariavel") != null) {
-                            Token tokenSentenca = dicionario.retornaTokenDicionario("nomeVariavel");
-                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           Token tokenSentenca = dicionario.retornaTokenDicionario("nomeVariavel");
+                           Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -663,7 +656,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -779,7 +772,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -798,7 +791,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -818,7 +811,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -862,7 +855,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -881,7 +874,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -901,7 +894,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -933,7 +926,17 @@ public class Automato {
                     
                      if (dicionario.retornaTokenDicionario("/") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("/");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -966,7 +969,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1014,7 +1017,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1033,7 +1036,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1053,7 +1056,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1099,7 +1102,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario("!=") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("!=");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1124,7 +1137,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario("{") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario("{");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "{", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "{", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1137,7 +1160,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario("}") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario("}");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "}", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "}", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1150,7 +1183,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario("(") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario("(");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "(", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "(", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1163,7 +1206,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario(")") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario(")");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ")", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ")", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1176,7 +1229,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario(";") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario(";");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ";", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ";", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1189,7 +1252,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario(":") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario(":");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ":", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ":", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1202,7 +1275,17 @@ public class Automato {
             if (dicionario.retornaTokenDicionario(",") != null) {
                 index++;
                 Token tokenSentenca = dicionario.retornaTokenDicionario(",");
-                tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ",", pegarNumeroLinha(index)));
+                Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), ",", pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                 return index;
             } else {
                 throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1233,7 +1316,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario(">=") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario(">=");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1245,7 +1338,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario(">>") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario(">>");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1255,7 +1358,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario(">") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario(">");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1266,7 +1379,17 @@ public class Automato {
 
                     if (dicionario.retornaTokenDicionario(">") != null) {
                         Token tokenSentenca = dicionario.retornaTokenDicionario(">");
-                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                        Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                         return index;
                     } else {
                         throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1302,7 +1425,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario("<=") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("<=");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1314,7 +1447,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario("<<") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("<<");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1324,7 +1467,17 @@ public class Automato {
 
                         if (dicionario.retornaTokenDicionario("<") != null) {
                             Token tokenSentenca = dicionario.retornaTokenDicionario("<");
-                            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                             return index;
                         } else {
                             throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");
@@ -1335,7 +1488,17 @@ public class Automato {
 
                     if (dicionario.retornaTokenDicionario("<") != null) {
                         Token tokenSentenca = dicionario.retornaTokenDicionario("<");
-                        tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index)));
+                        Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
+                           if(analisarSintatico)
+                           {
+                                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+               
+               
+                            }else
+                            {
+                                 tokensDaSentenca.add(tokenSalvar);
+                            }
                         return index;
                     } else {
                         throw new ExceptionsCompilador("Tipo Não encontraro no dicionario");

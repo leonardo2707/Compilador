@@ -19,7 +19,7 @@ public class AnalisadorSintatico {
         do {
             if (x == null) {
                 //remove o topo da lista
-                pilha.remove(0);
+               // pilha.remove(0);
                 //x recebe o topo da pilha
                 x = pilha.get(0);
             }
@@ -34,8 +34,7 @@ public class AnalisadorSintatico {
                     return pilha;
 
                 } else {
-                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
-                            + x.getNome());
+                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
@@ -52,7 +51,7 @@ public class AnalisadorSintatico {
                     ArrayList<Token> aux = pilha;
 
                     //a regra deve ficar em cima da pinha
-                    for (int i = 0; i <= aux.size(); i++) {
+                    for (int i = 0; i < aux.size(); i++) {
                         regra.add(aux.get(i));
                     }
                     
@@ -61,8 +60,7 @@ public class AnalisadorSintatico {
                 //X recebe o topo da pilha
                 x = pilha.get(0);
                 } else {
-                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken() + " =" 
-                          + x.getNome());
+                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
