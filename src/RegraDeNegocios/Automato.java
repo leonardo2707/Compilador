@@ -195,10 +195,12 @@ public class Automato {
             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index));
             if (!analisarSintatico) {
                 tokensDaSentenca.add(tokenSalvar);
+                JOptionPane.showMessageDialog(null, "Analise efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
 
+            }else
+            {
+                JOptionPane.showMessageDialog(null, "Compilação efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
             }
-            JOptionPane.showMessageDialog(null, "Analise efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
-
             //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
         }
         
