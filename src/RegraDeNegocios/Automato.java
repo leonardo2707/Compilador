@@ -47,6 +47,9 @@ public class Automato {
           {
               Token tokenSalvar = dicionario.retornaTokenDicionarioCodigo(48);
               tokensDaSentenca.add(tokenSalvar);
+              Token tokenSentenca = dicionario.retornaTokenDicionario("$");
+              tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index)));
+              
           }
         
         //A ultima posição é o simbolo do fim, então o index tem que ser menor que o fim
@@ -190,21 +193,11 @@ public class Automato {
             
             Token tokenSentenca = dicionario.retornaTokenDicionario("$");
             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index));
-            if (analisarSintatico) {
-                try{
+            if (!analisarSintatico) {
                 tokensDaSentenca.add(tokenSalvar);
-                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
-                JOptionPane.showMessageDialog(null, "Compilação efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
-                }catch(ExceptionsCompilador e)
-                {
-                    JOptionPane.showMessageDialog(null, e.getMessage(), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
-                }
 
-            } else {
-                tokensDaSentenca.add(tokenSalvar);
-                JOptionPane.showMessageDialog(null, "Analise efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
             }
+            JOptionPane.showMessageDialog(null, "Analise efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
 
             //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
         }
