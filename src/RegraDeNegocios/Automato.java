@@ -43,7 +43,7 @@ public class Automato {
         int index = 0;
         int indexAnterior;
         
-         if(analisarSintatico)
+         if(analisarSintatico && sentenca.length > 0)
           {
               Token tokenSalvar = dicionario.retornaTokenDicionarioCodigo(48);
               tokensDaSentenca.add(tokenSalvar);
@@ -186,14 +186,27 @@ public class Automato {
               
         }
         
-        if(!verificaErro)
-        {
+        if (!verificaErro) {
+            
             Token tokenSentenca = dicionario.retornaTokenDicionario("$");
-            tokensDaSentenca.add(new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index)));
-            
-           
-           //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
-            
+            Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), "$", pegarNumeroLinha(index));
+            if (analisarSintatico) {
+                try{
+                tokensDaSentenca.add(tokenSalvar);
+                AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
+                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
+                JOptionPane.showMessageDialog(null, "Compilação efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                }catch(ExceptionsCompilador e)
+                {
+                    JOptionPane.showMessageDialog(null, e.getMessage(), "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+                }
+
+            } else {
+                tokensDaSentenca.add(tokenSalvar);
+                JOptionPane.showMessageDialog(null, "Analise efetuada com sucesso Sem erros", "Compilador C-Hala",JOptionPane.INFORMATION_MESSAGE);
+            }
+
+            //Se entrar aqui a pilha esta pronto e funcionando que é uma delicia
         }
         
            
@@ -244,7 +257,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -260,7 +273,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -279,7 +292,7 @@ public class Automato {
                             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                             if (analisarSintatico) {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                             } else {
                                 tokensDaSentenca.add(tokenSalvar);
@@ -296,7 +309,7 @@ public class Automato {
                             Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                             if (analisarSintatico) {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                             } else {
                                 tokensDaSentenca.add(tokenSalvar);
@@ -350,7 +363,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -429,7 +442,7 @@ public class Automato {
                                 Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                 if (analisarSintatico) {
                                     AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                    this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                                 } else {
                                     tokensDaSentenca.add(tokenSalvar);
@@ -491,7 +504,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -547,7 +560,7 @@ public class Automato {
                                  Token tokenSalvar = new Token(tokenSentenca.getCodToken(), tokenSentenca.getToken(), valor, pegarNumeroLinha(index));
                                  if (analisarSintatico) {
                                      AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                     this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                     this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
 
                                  }else
                                 {
@@ -571,7 +584,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -634,7 +647,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -656,7 +669,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -772,7 +785,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -791,7 +804,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -811,7 +824,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -855,7 +868,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -874,7 +887,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -894,7 +907,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -930,7 +943,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -969,7 +982,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1017,7 +1030,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1036,7 +1049,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1056,7 +1069,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1106,7 +1119,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1141,7 +1154,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1164,7 +1177,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1187,7 +1200,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1210,7 +1223,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1233,7 +1246,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1256,7 +1269,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1279,7 +1292,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1320,7 +1333,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1342,7 +1355,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1362,7 +1375,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1383,7 +1396,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1429,7 +1442,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1451,7 +1464,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1471,7 +1484,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else
@@ -1492,7 +1505,7 @@ public class Automato {
                            if(analisarSintatico)
                            {
                                 AnalisadorSintatico analisadorSintatico = new AnalisadorSintatico();
-                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(this.tokensDaSentenca.size()-1), tokenSalvar, this.tokensDaSentenca);
+                                this.tokensDaSentenca = analisadorSintatico.analisarTreta(this.tokensDaSentenca.get(0), tokenSalvar, this.tokensDaSentenca);
                
                
                             }else

@@ -5,6 +5,7 @@ import Classes.GramaticaCodificada;
 import Classes.TabelaParsing;
 import Classes.Token;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class AnalisadorSintatico {
     
@@ -17,9 +18,10 @@ public class AnalisadorSintatico {
     public ArrayList<Token> analisarTreta(Token x, Token a, ArrayList<Token> pilha) throws ExceptionsCompilador
     {
         do {
-            if (x == null) {
+            //Se X== vazio então
+            if (x.getCodToken() == 15) {
                 //remove o topo da lista
-               // pilha.remove(0);
+                pilha.remove(0);
                 //x recebe o topo da pilha
                 x = pilha.get(0);
             }
@@ -34,7 +36,7 @@ public class AnalisadorSintatico {
                     return pilha;
 
                 } else {
-                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken());
+                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Token: " + x.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
@@ -49,7 +51,8 @@ public class AnalisadorSintatico {
                 // Coloque o conteúdo da regra na pilha
                     ArrayList<Token> regra = gramaticaCodificada.getRegras().get(numeroRegra).getRegra(); //pega regra aqui na treta que o gabriel esta fazendo
                     ArrayList<Token> aux = pilha;
-
+                    
+                    Collections.reverse(regra);
                     //a regra deve ficar em cima da pinha
                     for (int i = 0; i < aux.size(); i++) {
                         regra.add(aux.get(i));
@@ -60,11 +63,11 @@ public class AnalisadorSintatico {
                 //X recebe o topo da pilha
                 x = pilha.get(0);
                 } else {
-                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Tokem: " + x.getToken());
+                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  x.getLinha() + "\nCom o Token: " + x.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
-        } while (x.getCodToken() == 44);
+        } while (x.getCodToken() != 44);
         return pilha;
     }
 }
