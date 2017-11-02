@@ -358,7 +358,7 @@ public class Editor extends javax.swing.JFrame {
     public void adicionarLinhas(){
         DefaultTableModel model = (DefaultTableModel) tabelaAutomato.getModel();
         Object rowData[] = new Object[3];
-        model.setNumRows(0);
+        model.setRowCount(0);
         for(int i = 0 ; i < lista.size() ; i++){
             rowData[0] = lista.get(i).getCodToken();
             rowData[1] = lista.get(i).getToken();

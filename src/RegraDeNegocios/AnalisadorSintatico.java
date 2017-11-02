@@ -36,7 +36,7 @@ public class AnalisadorSintatico {
                     return pilha;
 
                 } else {
-                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  a.getLinha() + "\nCom o/a " + a.getToken());
+                    throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  a.getLinha() + "\nCom o texto " + a.getNome() + " um " + a.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
@@ -63,7 +63,7 @@ public class AnalisadorSintatico {
                 //X recebe o topo da pilha
                 x = pilha.get(0);
                 } else {
-                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  a.getLinha() + "\nCom o/a " + a.getToken());
+                  throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  a.getLinha() + "\nCom o texto " + a.getNome() + " um " + a.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
                 }
             }
