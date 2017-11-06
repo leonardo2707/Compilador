@@ -223,7 +223,7 @@ public class GramaticaCodificada {
         //48 = 7
         
         
-        regras.add(49, new Regra(dicionario.retornaTokenDicionarioCodigo(12), dicionario.retornaTokenDicionarioCodigo(43),
+        regras.add(49, new Regra(dicionario.retornaTokenDicionarioCodigo(14), dicionario.retornaTokenDicionarioCodigo(43),
         dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67), dicionario.retornaTokenDicionarioCodigo(42), dicionario.retornaTokenDicionarioCodigo(36),
         dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62),
         dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(68)));
@@ -241,7 +241,7 @@ public class GramaticaCodificada {
         regras.add(52, new Regra(dicionario.retornaTokenDicionarioCodigo(1),dicionario.retornaTokenDicionarioCodigo(43),
         dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67), dicionario.retornaTokenDicionarioCodigo(42),
         dicionario.retornaTokenDicionarioCodigo(36),dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37),
-        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35)));
+        dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35)));
         //52 = 1,43,7,67,42,36,61,37,62,35
         
         regras.add(53, new Regra(dicionario.retornaTokenDicionarioCodigo(28), dicionario.retornaTokenDicionarioCodigo(69)));
@@ -250,7 +250,7 @@ public class GramaticaCodificada {
         regras.add(54, new Regra(dicionario.retornaTokenDicionarioCodigo(45), dicionario.retornaTokenDicionarioCodigo(69)));
         //54 = 45,69
         
-        regras.add(55, new Regra(dicionario.retornaTokenDicionarioCodigo(55), dicionario.retornaTokenDicionarioCodigo(69)));
+        regras.add(55, new Regra(dicionario.retornaTokenDicionarioCodigo(27), dicionario.retornaTokenDicionarioCodigo(69)));
          //55 = 27,69
          
         regras.add(56, new Regra(dicionario.retornaTokenDicionarioCodigo(26), dicionario.retornaTokenDicionarioCodigo(69)));
@@ -279,9 +279,10 @@ public class GramaticaCodificada {
         
         regras.add(64, new Regra(dicionario.retornaTokenDicionarioCodigo(16), dicionario.retornaTokenDicionarioCodigo(43),
         dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(29), dicionario.retornaTokenDicionarioCodigo(69),
-        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(70), dicionario.retornaTokenDicionarioCodigo(70),
-        dicionario.retornaTokenDicionarioCodigo(42), dicionario.retornaTokenDicionarioCodigo(36), dicionario.retornaTokenDicionarioCodigo(61),
-        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35)));
+        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67),
+        dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(70), dicionario.retornaTokenDicionarioCodigo(42),
+        dicionario.retornaTokenDicionarioCodigo(36), dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37),
+        dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35)));
         //64 = 16,43,7,29,69,37,7,67,37,70,42,36,61,37,62,35
         
         regras.add(65, new Regra(dicionario.retornaTokenDicionarioCodigo(33), dicionario.retornaTokenDicionarioCodigo(5)));
@@ -292,7 +293,7 @@ public class GramaticaCodificada {
          
         regras.add(67, new Regra(dicionario.retornaTokenDicionarioCodigo(20), dicionario.retornaTokenDicionarioCodigo(36),
         dicionario.retornaTokenDicionarioCodigo(61), dicionario.retornaTokenDicionarioCodigo(37), dicionario.retornaTokenDicionarioCodigo(62),
-        dicionario.retornaTokenDicionarioCodigo(62), dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(1), 
+         dicionario.retornaTokenDicionarioCodigo(35), dicionario.retornaTokenDicionarioCodigo(1), 
         dicionario.retornaTokenDicionarioCodigo(43), dicionario.retornaTokenDicionarioCodigo(7), dicionario.retornaTokenDicionarioCodigo(67),
         dicionario.retornaTokenDicionarioCodigo(42)));
         //67 = 20,36,61,37,62,35,1,43,7,67,42
