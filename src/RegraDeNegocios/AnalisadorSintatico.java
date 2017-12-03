@@ -27,7 +27,7 @@ public class AnalisadorSintatico {
                 x = pilha.get(0);
             }
             //Se X == terminal então
-            else if (x.getCodToken() <= 47) {
+            else if (x.getCodToken() <= 47 || pilha.get(0).getCodToken() >= 100) {
                 
                 //Se X==a então
                 if (x.getCodToken() == a.getCodToken()) {
@@ -64,8 +64,13 @@ public class AnalisadorSintatico {
                 // Coloque o conteúdo da regra na pilha
                     ArrayList<Token> regra = gramaticaCodificada.getRegras().get(numeroRegra).getRegra(); //pega regra aqui na treta que o gabriel esta fazendo
                     ArrayList<Token> aux = pilha;
+                  
                     
-                    Collections.reverse(regra);
+                    
+                    //Collections.reverse(regra);
+                  
+                  
+                  
                     //a regra deve ficar em cima da pinha
                     for (int i = 0; i < aux.size(); i++) {
                         regra.add(aux.get(i));
@@ -75,6 +80,16 @@ public class AnalisadorSintatico {
                 //aqui ele termina de colocar o conteudo da regra na pilha
                 //X recebe o topo da pilha
                 x = pilha.get(0);
+                
+                 if(pilha.get(0).getCodToken() >= 100)
+                    {
+                        //executa ação semantica com o terminal encontrado
+                        funcAcoesSemantica.AcoesSemantica(a, pilha.get(0).getCodToken());
+                        
+                        //remove da pilha o cod de ação semantica
+                        pilha.remove(0);
+                    }
+                 
                 } else {
                   throw new ExceptionsCompilador("[Erro Sintatico] Erro na linha: " +  a.getLinha() + "\nCom o texto " + a.getNome() + " um " + a.getToken());
                     //AQUI DA UM ERRO SINTATICO EM ALGUMA LINHA
