@@ -93,6 +93,13 @@ public class Dicionario {
         dicionario.add(new Token(75, "FATOR"));
         dicionario.add(new Token(76, "REPTERMO"));
         
+        //ações semanticas
+        dicionario.add(new Token(100, "SEMANTICA 100"));
+        dicionario.add(new Token(101, "SEMANTICA 101"));
+        dicionario.add(new Token(102, "SEMANTICA 102"));
+        dicionario.add(new Token(103, "SEMANTICA 103"));
+        dicionario.add(new Token(104, "SEMANTICA 104"));
+        
         //palavras reservadas
         
         CodigosReservados[0] = 1;

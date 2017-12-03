@@ -1,5 +1,6 @@
 package RegraDeNegocios;
 
+import Classes.AcoesSemantica;
 import Classes.ExceptionsCompilador;
 import Classes.GramaticaCodificada;
 import Classes.TabelaParsing;
@@ -15,7 +16,7 @@ public class AnalisadorSintatico {
     
     //a = recebe o símbolo da entrada
     //x recebe o topo da pilha
-    public ArrayList<Token> analisarTreta(Token x, Token a, ArrayList<Token> pilha) throws ExceptionsCompilador
+    public ArrayList<Token> analisarTreta(Token x, Token a, ArrayList<Token> pilha, AcoesSemantica funcAcoesSemantica) throws ExceptionsCompilador
     {
         do {
             //Se X== vazio então
@@ -32,6 +33,18 @@ public class AnalisadorSintatico {
                 if (x.getCodToken() == a.getCodToken()) {
                     // Retire o elemento do topo da pilha
                     pilha.remove(0);
+                    
+                    //Se topo da pilha agora é uma ação semântica
+                    if(pilha.get(0).getCodToken() >= 100)
+                    {
+                        //executa ação semantica com o terminal encontrado
+                        funcAcoesSemantica.AcoesSemantica(a, pilha.get(0).getCodToken());
+                        
+                        //remove da pilha o cod de ação semantica
+                        pilha.remove(0);
+                    }
+                    
+                    
                     //Volta para o Léxico
                     return pilha;
 
