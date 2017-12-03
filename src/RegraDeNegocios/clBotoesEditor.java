@@ -69,8 +69,8 @@ public class clBotoesEditor implements ActionListener{
             automato.verificaSentenca();
             
             
-        //    editor.setLista(automato.getTokensDaSentenca());
-        //    editor.adicionarLinhas();
+           // editor.setLista(automato.getTokensDaSentenca());
+           // editor.adicionarLinhas();
         }
         
         

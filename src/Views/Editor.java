@@ -7,7 +7,6 @@ package Views;
 
 import Classes.FuncoesSalvarAbrir;
 import Classes.Token;
-import RegraDeNegocios.Automato;
 import RegraDeNegocios.clBotoesEditor;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -365,6 +364,13 @@ public class Editor extends javax.swing.JFrame {
             rowData[2] = lista.get(i).getLinha();
             model.addRow(rowData);
         }
+        
+        System.out.println("//////////////////////////////// lista de tokens ///////////////////////////////");
+        for(int i= 0; i < lista.size(); i++)
+        {
+            System.out.println("Cod Token " + lista.get(i).getCodToken() + " Token " + lista.get(i).getToken() + " linha " + lista.get(i).getLinha());
+        }
+        System.out.println("//////////////////////////////// lista de tokens ///////////////////////////////");
         
     }
 

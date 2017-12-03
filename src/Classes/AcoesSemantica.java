@@ -25,7 +25,7 @@ public class AcoesSemantica {
                 regraSemantica102(tokenAtual);
                 break;
             case 103:
-                regraSemantica103(tokenAtual);
+                regraSemantica103();
                 break;
             case 104:
                 regraSemantica104(tokenAtual);
@@ -73,7 +73,7 @@ public class AcoesSemantica {
         this.listaComparacao.add(token);
     }
     
-    private void regraSemantica103(Token token) throws ExceptionsCompilador
+    private void regraSemantica103() throws ExceptionsCompilador
     {
         /*Agora, esse aqui vai ser lokona de fazer, pq temos uma lista de tokens para serem verificados os tipos, 
         temos uma matriz de todas as variaveis declaras e seus tipos, então precisamos pegar todos os itens da lista
@@ -83,7 +83,15 @@ public class AcoesSemantica {
     }
     private void regraSemantica104(Token token) throws ExceptionsCompilador
     {
+        for(int i = 0; i < lista.size(); i ++)
+        {
+            if(lista.get(i).getTokenVariavel().getNome().equals(token.getNome()))
+            {
+                return;
+            }
+        }
         
+        throw new ExceptionsCompilador("[Erro Semantico] variavel nao declarada: " + token.getNome());
     }
     
     
@@ -97,7 +105,6 @@ public class AcoesSemantica {
                 return true;
             }
         }
-        
         return false;
     }
     
@@ -112,8 +119,46 @@ public class AcoesSemantica {
         }
     }
     
-    private boolean verificaTipoListaComparacao()
+    private void verificaTipoListaComparacao() throws ExceptionsCompilador
     {
-        return false;
+        String tipo = "";
+        
+        for(int i = 0; i < listaComparacao.size(); i ++)
+        {
+            //pega o tipo de uma das variaveis
+            if(buscaTipoToken(listaComparacao.get(i)) != null && tipo.equals(""))
+            {
+                //coloca o tipo na variavel
+                tipo = buscaTipoToken(listaComparacao.get(i)).getToken();
+            }else if(buscaTipoToken(listaComparacao.get(i)) != null)
+            {
+                //se ele buscar um tipo e não vier o mesmo da uma excetion
+                if(!buscaTipoToken(listaComparacao.get(i)).getToken().equals(tipo))
+                {
+                    
+                     throw new ExceptionsCompilador("[Erro Semantico] feito uma opração com tipos de variaveis diferente");
+                }
+            }else
+            {
+                 throw new ExceptionsCompilador("[Erro Semantico] busca pelo tipo da variavel retornou nulo");
+            }
+        }
+        
+        //limpa a lista
+        listaComparacao.clear();
+    }
+    
+    
+    private Token buscaTipoToken(Token token)
+    {
+        for(int i = 0; i < lista.size(); i ++)
+        {
+            if(lista.get(i).getTokenVariavel().getNome().equals(token.getNome()))
+            {
+                return lista.get(i).getTokenTipoVariavel();
+            }
+        }
+        
+        return null;
     }
 }
