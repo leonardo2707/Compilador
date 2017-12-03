@@ -368,7 +368,7 @@ public class Editor extends javax.swing.JFrame {
         System.out.println("//////////////////////////////// lista de tokens ///////////////////////////////");
         for(int i= 0; i < lista.size(); i++)
         {
-            System.out.println("Cod Token " + lista.get(i).getCodToken() + " Token " + lista.get(i).getToken() + " linha " + lista.get(i).getLinha());
+            System.out.println("Cod " + lista.get(i).getCodToken() + " Token " + lista.get(i).getToken() + " nome: " + lista.get(i).getNome());
         }
         System.out.println("//////////////////////////////// lista de tokens ///////////////////////////////");
         

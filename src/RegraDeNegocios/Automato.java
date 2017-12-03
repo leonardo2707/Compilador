@@ -1660,7 +1660,7 @@ public class Automato {
     {
         if(editor != null)
         {
-          editor.setLista(this.getTokensDaSentenca());
+          editor.setLista(this.tokensDaSentenca);
           editor.adicionarLinhas();
         }
     }
